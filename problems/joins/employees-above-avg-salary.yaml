@@ -1,0 +1,53 @@
+id: "0192f0a1-2b3c-7d8e-9f0a-1b2c3d4e5f6a"
+slug: "employees-above-avg-salary"
+title: "Employees above average salary"
+description: |
+  Write a query that returns employees whose salary is above the department average.
+difficulty: easy
+mode: read
+category: joins
+sampleInput:
+  - "employees(id, dept_id, salary)"
+sampleOutput: "id\n1\n3"
+initSql: |
+  CREATE TABLE employees (
+    id INT PRIMARY KEY,
+    dept_id INT NOT NULL,
+    salary INT NOT NULL
+  );
+  INSERT INTO employees VALUES
+    (1, 1, 100000),
+    (2, 1, 80000),
+    (3, 2, 120000),
+    (4, 2, 90000);
+solutionSql: |
+  SELECT e.id
+  FROM employees e
+  JOIN (
+    SELECT dept_id, AVG(salary) AS avg_sal
+    FROM employees
+    GROUP BY dept_id
+  ) d ON e.dept_id = d.dept_id
+  WHERE e.salary > d.avg_sal;
+validationSql: |
+  -- Returns 1 if correct, 0 if incorrect
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT e.id
+      FROM employees e
+      JOIN (
+        SELECT dept_id, AVG(salary) AS avg_sal
+        FROM employees
+        GROUP BY dept_id
+      ) d ON e.dept_id = d.dept_id
+      WHERE e.salary > d.avg_sal
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES (1), (3)
+    ) expected(id)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: false
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

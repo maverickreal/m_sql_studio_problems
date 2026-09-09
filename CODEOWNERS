@@ -1,0 +1,16 @@
+# CODEOWNERS for m_sql_studio_problems
+#
+# These users/groups will be requested for review when changes are made to matching files.
+# Order matters: the last matching pattern has the most precedence.
+
+# All problems - require maintainer review
+/problems/ @maverickreal
+
+# Schema changes - require maintainer review
+/schemas/ @maverickreal
+
+# Workflow changes - require maintainer review
+/.github/workflows/ @maverickreal
+
+# Documentation - anyone can review
+/*.md

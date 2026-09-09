@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MSqlStudio Problem v1",
+  "type": "object",
+  "required": [
+    "id",
+    "slug",
+    "title",
+    "description",
+    "difficulty",
+    "mode",
+    "category",
+    "sampleInput",
+    "sampleOutput",
+    "initSql",
+    "solutionSql",
+    "validationSql",
+    "orderMatters",
+    "author",
+    "license",
+    "schema_version"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUID v7, immutable identifier"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Unique URL-safe slug"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["easy", "medium", "hard"]
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["read", "write"]
+    },
+    "category": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Must match the directory name under problems/"
+    },
+    "sampleInput": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*\\([a-zA-Z0-9_, ]*\\)$"
+      },
+      "minItems": 1,
+      "description": "Table schemas, one per line: table_name(col1, col2, ...)"
+    },
+    "sampleOutput": {
+      "type": "string",
+      "description": "Expected output rows (tab or CSV)"
+    },
+    "initSql": {
+      "type": "string",
+      "description": "CREATE TABLE and INSERT statements"
+    },
+    "solutionSql": {
+      "type": "string",
+      "description": "The correct SQL query"
+    },
+    "validationSql": {
+      "type": "string",
+      "description": "SQL that verifies the solution produces correct results"
+    },
+    "orderMatters": {
+      "type": "boolean",
+      "description": "Whether row order matters for validation"
+    },
+    "author": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9-]+$",
+      "description": "GitHub handle only (no PII)"
+    },
+    "license": {
+      "type": "string",
+      "const": "CC-BY-4.0"
+    },
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    }
+  },
+  "additionalProperties": false
+}

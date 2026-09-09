@@ -1,0 +1,172 @@
+name: Validate Problems
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'problems/**/*.yaml'
+      - 'schemas/problem-v1.json'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'problems/**/*.yaml'
+      - 'schemas/problem-v1.json'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install ajv-cli
+        run: npm install -g ajv-cli@5
+
+      - name: Validate all problem YAML files against schema
+        run: |
+          echo "Validating problems against schema..."
+          # Find all YAML files in problems/
+          mapfile -t files < <(find problems -name '*.yaml' -type f)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No problem files found"
+            exit 0
+          fi
+          
+          # Validate each file
+          for file in "${files[@]}"; do
+            echo "Validating $file..."
+            # Convert YAML to JSON for ajv validation
+            npx -y yaml2json "$file" > /tmp/problem.json
+            if ! ajv validate -s schemas/problem-v1.json -d /tmp/problem.json --strict=false; then
+              echo "❌ Validation failed for $file"
+              exit 1
+            fi
+            echo "✅ $file valid"
+          done
+
+      - name: Check slug uniqueness
+        run: |
+          echo "Checking slug uniqueness..."
+          mapfile -t files < <(find problems -name '*.yaml' -type f)
+          declare -A slugs
+          declare -A ids
+          duplicate_slugs=()
+          duplicate_ids=()
+          
+          for file in "${files[@]}"; do
+            slug=$(grep '^slug:' "$file" | sed 's/^slug: *//' | tr -d '"')
+            id=$(grep '^id:' "$file" | sed 's/^id: *//' | tr -d '"')
+            
+            if [[ -n "${slugs[$slug]}" ]]; then
+              duplicate_slugs+=("$slug in $file and ${slugs[$slug]}")
+            else
+              slugs[$slug]="$file"
+            fi
+            
+            if [[ -n "${ids[$id]}" ]]; then
+              duplicate_ids+=("$id in $file and ${ids[$id]}")
+            else
+              ids[$id]="$file"
+            fi
+          done
+          
+          if [ ${#duplicate_slugs[@]} -gt 0 ]; then
+            echo "❌ Duplicate slugs found:"
+            for dup in "${duplicate_slugs[@]}"; do
+              echo "  $dup"
+            done
+            exit 1
+          fi
+          
+          if [ ${#duplicate_ids[@]} -gt 0 ]; then
+            echo "❌ Duplicate IDs found:"
+            for dup in "${duplicate_ids[@]}"; do
+              echo "  $dup"
+            done
+            exit 1
+          fi
+          
+          echo "✅ All slugs and IDs are unique"
+
+      - name: Check category matches directory
+        run: |
+          echo "Checking category matches directory..."
+          mapfile -t files < <(find problems -name '*.yaml' -type f)
+          mismatches=()
+          
+          for file in "${files[@]}"; do
+            category=$(grep '^category:' "$file" | sed 's/^category: *//' | tr -d '"')
+            dir=$(dirname "$file")
+            dir_category=$(basename "$dir")
+            
+            if [[ "$category" != "$dir_category" ]]; then
+              mismatches+=("$file: category='$category' but directory='$dir_category'")
+            fi
+          done
+          
+          if [ ${#mismatches[@]} -gt 0 ]; then
+            echo "❌ Category/directory mismatches:"
+            for m in "${mismatches[@]}"; do
+              echo "  $m"
+            done
+            exit 1
+          fi
+          
+          echo "✅ All categories match directories"
+
+      - name: Check for forbidden LeetCode fields
+        run: |
+          echo "Checking for forbidden LeetCode fields..."
+          mapfile -t files < <(find problems -name '*.yaml' -type f)
+          violations=()
+          
+          for file in "${files[@]}"; do
+            # Check for LeetCode-style fields that should not exist
+            if grep -qE '^(test_cases|hints|statement):' "$file"; then
+              violations+=("$file contains forbidden LeetCode field")
+            fi
+          done
+          
+          if [ ${#violations[@]} -gt 0 ]; then
+            echo "❌ Forbidden LeetCode fields found:"
+            for v in "${violations[@]}"; do
+              echo "  $v"
+            done
+            exit 1
+          fi
+          
+          echo "✅ No forbidden LeetCode fields found"
+
+      - name: Check license and schema_version
+        run: |
+          echo "Checking license and schema_version..."
+          mapfile -t files < <(find problems -name '*.yaml' -type f)
+          violations=()
+          
+          for file in "${files[@]}"; do
+            license=$(grep '^license:' "$file" | sed 's/^license: *//' | tr -d '"')
+            schema_version=$(grep '^schema_version:' "$file" | sed 's/^schema_version: *//' | tr -d '"')
+            
+            if [[ "$license" != "CC-BY-4.0" ]]; then
+              violations+=("$file: license='$license' (must be CC-BY-4.0)")
+            fi
+            
+            if [[ "$schema_version" != "1" ]]; then
+              violations+=("$file: schema_version='$schema_version' (must be 1)")
+            fi
+          done
+          
+          if [ ${#violations[@]} -gt 0 ]; then
+            echo "❌ License/schema_version violations:"
+            for v in "${violations[@]}"; do
+              echo "  $v"
+            done
+            exit 1
+          fi
+          
+          echo "✅ All licenses and schema_versions correct"

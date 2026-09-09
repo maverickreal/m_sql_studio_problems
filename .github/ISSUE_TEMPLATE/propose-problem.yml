@@ -1,0 +1,151 @@
+name: Propose a Problem
+description: Submit a new SQL problem for MSqlStudio
+title: "[Propose] <title>"
+labels: ["proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for proposing a SQL problem! Please fill out the fields below.
+        All problems must follow the schema in `schemas/problem-v1.json`.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem Description
+      description: 'What should the user write a query for?'
+      placeholder: "Write a query that returns employees whose salary is above the department average."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: Difficulty
+      options:
+        - easy
+        - medium
+        - hard
+    validations:
+      required: true
+
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Mode
+      description: Read-only (SELECT) or write (INSERT/UPDATE/DELETE)?
+      options:
+        - read
+        - write
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Must match an existing directory under problems/
+      options:
+        - joins
+        - subqueries
+        - aggregation
+        - window-functions
+        - cte
+        - set-operations
+        - other
+    validations:
+      required: true
+
+  - type: textarea
+    id: sample_input
+    attributes:
+      label: Sample Input (table schemas)
+      description: 'One per line, format: "table_name(col1, col2, ...)"'
+      placeholder: |
+        employees(id, dept_id, salary)
+        departments(id, name)
+    validations:
+      required: true
+
+  - type: textarea
+    id: sample_output
+    attributes:
+      label: Sample Output
+      description: Expected output rows (tab or CSV)
+      placeholder: "id\n1\n3"
+    validations:
+      required: true
+
+  - type: textarea
+    id: init_sql
+    attributes:
+      label: Init SQL (CREATE + INSERT)
+      description: Creates tables and inserts sample data
+      placeholder: |
+        CREATE TABLE employees (id INT, dept_id INT, salary INT);
+        CREATE TABLE departments (id INT, name TEXT);
+        INSERT INTO employees VALUES (1, 1, 100000), (2, 1, 80000), (3, 2, 120000);
+        INSERT INTO departments VALUES (1, 'Engineering'), (2, 'Sales');
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution_sql
+    attributes:
+      label: Solution SQL
+      description: The correct query
+      placeholder: |
+        SELECT e.id
+        FROM employees e
+        JOIN (
+          SELECT dept_id, AVG(salary) AS avg_sal
+          FROM employees
+          GROUP BY dept_id
+        ) d ON e.dept_id = d.dept_id
+        WHERE e.salary > d.avg_sal;
+    validations:
+      required: true
+
+  - type: textarea
+    id: validation_sql
+    attributes:
+      label: Validation SQL
+      description: Query that verifies the solution produces correct results
+      placeholder: |
+        -- Returns 1 if correct, 0 if incorrect
+        SELECT CASE WHEN EXISTS (
+          SELECT 1 FROM (
+            -- user solution here
+          ) user_result
+          EXCEPT
+          SELECT 1 FROM (
+            -- expected result here
+          ) expected_result
+        ) THEN 0 ELSE 1 END AS correct;
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: order_matters
+    attributes:
+      label: Does row order matter?
+      options:
+        - label: "Yes, order matters (set orderMatters: true)"
+          required: false
+
+  - type: input
+    id: author
+    attributes:
+      label: Your GitHub handle
+      description: Attribution per CC-BY-4.0 (handle only, no PII)
+      placeholder: "octocat"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: dco
+    attributes:
+      label: DCO Sign-off
+      options:
+        - label: "I certify this contribution follows the Developer Certificate of Origin (DCO)"
+          required: true

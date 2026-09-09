@@ -1,0 +1,73 @@
+name: Report Data Error
+description: Report incorrect sample data, init SQL, or validation SQL in an existing problem
+title: "[Data Error] <problem slug or id>"
+labels: ["data-error"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a data error! Please identify the problem and describe what is wrong.
+
+  - type: input
+    id: problem_ref
+    attributes:
+      label: Problem reference
+      description: Problem slug (e.g., employees-above-avg-salary) or UUID id
+      placeholder: "employees-above-avg-salary"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: error_type
+    attributes:
+      label: Error type
+      options:
+        - sample_input
+        - sample_output
+        - init_sql
+        - solution_sql
+        - validation_sql
+        - other
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current (incorrect) content
+      description: Paste the current incorrect content from the YAML file
+    validations:
+      required: true
+
+  - type: textarea
+    id: corrected
+    attributes:
+      label: Corrected content
+      description: Paste the corrected content
+    validations:
+      required: true
+
+  - type: textarea
+    id: explanation
+    attributes:
+      label: Explanation
+      description: Why is the current content wrong and how does your correction fix it?
+    validations:
+      required: true
+
+  - type: input
+    id: author
+    attributes:
+      label: Your GitHub handle
+      description: Attribution per CC-BY-4.0 (handle only, no PII)
+      placeholder: "octocat"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: dco
+    attributes:
+      label: DCO Sign-off
+      options:
+        - label: "I certify this contribution follows the Developer Certificate of Origin (DCO)"
+          required: true
