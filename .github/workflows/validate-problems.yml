@@ -6,11 +6,19 @@ on:
     paths:
       - 'problems/**/*.yaml'
       - 'schemas/problem-v1.json'
+      - 'scripts/**'
+      - 'test/**'
+      - 'package.json'
+      - 'package-lock.json'
   pull_request:
     branches: [main]
     paths:
       - 'problems/**/*.yaml'
       - 'schemas/problem-v1.json'
+      - 'scripts/**'
+      - 'test/**'
+      - 'package.json'
+      - 'package-lock.json'
 
 jobs:
   validate:
@@ -23,6 +31,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+
+      - name: Run local validator test suite
+        run: |
+          npm ci
+          npm test
 
       - name: Install ajv-cli
         run: npm install -g ajv-cli@5

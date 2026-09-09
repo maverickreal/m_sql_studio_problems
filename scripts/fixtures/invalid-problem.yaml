@@ -1,0 +1,19 @@
+id: "invalid-uuid-123"
+slug: "Invalid Slug!"
+title: "Invalid Problem Fixture"
+description: "This fixture has multiple schema and rule violations for testing validation failure."
+difficulty: easy
+mode: read
+category: invalid-category
+sampleInput:
+  - "employees(id, dept_id, salary)"
+sampleOutput: "id\n1"
+initSql: "CREATE TABLE employees (id INT);"
+solutionSql: "SELECT id FROM employees;"
+validationSql: "SELECT 1;"
+orderMatters: false
+author: "test"
+license: "MIT"
+schema_version: 999
+test_cases:
+  - input: "1"

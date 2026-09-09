@@ -1,0 +1,15 @@
+{
+  "name": "m-sql-studio-problems",
+  "version": "1.0.0",
+  "description": "MSqlStudio problems schema validator",
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "validate": "node scripts/validate-problems.mjs"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "yaml": "^2.7.0"
+  }
+}
