@@ -51,11 +51,30 @@ Key requirements:
 - UUID v7 `id` field (immutable)
 - Unique `slug` (URL-safe)
 - `category` must match the directory name
+- `datasets` — non-empty array of dataset slugs that must exist under `datasets/`
+- `origin` — either `community` (contributor PR) or `first-party` (maintainer)
 - Author = GitHub handle only (no PII)
 - License = CC-BY-4.0
 - `schema_version: 1`
 
 See `schemas/problem-v1.json` for the full schema and `problems/joins/` for examples.
+
+## Datasets
+
+Datasets are reusable SQL catalogs under `datasets/<slug>/` with `schema.sql` (CREATE TABLE) and `seed.sql` (deterministic INSERT).
+
+- Problems reference datasets by slug in the `datasets` field
+- Tier 1 contributions use existing datasets only
+- Tier 2 adds `overlaySql` (extra CREATE/INSERT on top)
+- Tier 3 adds new datasets — must include `datasets/<slug>/` files in the PR
+
+## Contribution tiers
+
+| Tier | What | Allowed SQL | Merge bar |
+|------|------|-------------|-----------|
+| 1 (default) | Problem YAML | Read/write against named dataset tables | Tests + CI + intelligence approval |
+| 2 (overlay) | YAML + `overlaySql` | Extra tables/rows; must not DROP/ALTER published datasets | Same + higher scrutiny |
+| 3 (new dataset) | New `datasets/<slug>/` | New schema + finite deterministic seed | Maintainer merge + tests of all problems that will use it |
 
 ## Issue templates
 

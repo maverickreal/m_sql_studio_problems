@@ -1,11 +1,12 @@
 {
   "name": "m-sql-studio-problems",
   "version": "1.0.0",
-  "description": "MSqlStudio problems schema validator",
+  "description": "MSqlStudio problems schema + dataset validator",
   "type": "module",
   "scripts": {
     "test": "node --test",
-    "validate": "node scripts/validate-problems.mjs"
+    "validate": "node scripts/validate-problems.mjs",
+    "validate:datasets": "node scripts/validate-datasets.mjs"
   },
   "devDependencies": {
     "ajv": "^8.17.1",

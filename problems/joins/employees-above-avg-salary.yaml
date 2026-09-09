@@ -6,10 +6,13 @@ description: |
 difficulty: easy
 mode: read
 category: joins
+datasets:
+  - hr
 sampleInput:
   - "employees(id, dept_id, salary)"
 sampleOutput: "id\n1\n3"
 initSql: |
+  -- In production: dataset SQL (schema + seed) is concatenated from datasets/hr/
   CREATE TABLE employees (
     id INT PRIMARY KEY,
     dept_id INT NOT NULL,
@@ -30,7 +33,6 @@ solutionSql: |
   ) d ON e.dept_id = d.dept_id
   WHERE e.salary > d.avg_sal;
 validationSql: |
-  -- Returns 1 if correct, 0 if incorrect
   SELECT CASE WHEN NOT EXISTS (
     SELECT 1 FROM (
       SELECT e.id
@@ -48,6 +50,7 @@ validationSql: |
     ) expected(id)
   ) THEN 1 ELSE 0 END AS correct;
 orderMatters: false
+origin: first-party
 author: "maverickreal"
 license: "CC-BY-4.0"
 schema_version: 1

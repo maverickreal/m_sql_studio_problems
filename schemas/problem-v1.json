@@ -10,6 +10,7 @@
     "difficulty",
     "mode",
     "category",
+    "datasets",
     "sampleInput",
     "sampleOutput",
     "initSql",
@@ -17,6 +18,7 @@
     "validationSql",
     "orderMatters",
     "author",
+    "origin",
     "license",
     "schema_version"
   ],
@@ -53,6 +55,29 @@
       "pattern": "^[a-z0-9-]+$",
       "description": "Must match the directory name under problems/"
     },
+    "datasets": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+$"
+      },
+      "uniqueItems": true,
+      "description": "Dataset slugs that must exist under datasets/"
+    },
+    "overlaySql": {
+      "type": "string",
+      "description": "Optional extra CREATE/INSERT statements on top of named datasets"
+    },
+    "origin": {
+      "type": "string",
+      "enum": ["community", "first-party"],
+      "description": "Origin of the problem: community (contributor PR) or first-party (maintainer)"
+    },
+    "contributor": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9-]+$",
+      "description": "GitHub handle of contributor (community problems only)"
+    },
     "sampleInput": {
       "type": "array",
       "items": {
@@ -68,7 +93,7 @@
     },
     "initSql": {
       "type": "string",
-      "description": "CREATE TABLE and INSERT statements"
+      "description": "CREATE TABLE and INSERT statements (legacy; preferred: datasets + overlaySql)"
     },
     "solutionSql": {
       "type": "string",
