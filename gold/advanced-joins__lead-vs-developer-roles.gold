@@ -1,3 +1,3 @@
-psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789016431233_1xu0gc.sql:83: ERROR:  column "r" does not exist
+psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789023113616_oexe1e.sql:83: ERROR:  column "r" does not exist
 LINE 8:      SELECT COUNT(*) FILTER (WHERE ep2.role = r)
                                                       ^

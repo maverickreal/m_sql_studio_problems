@@ -1,0 +1,16 @@
+psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789023114840_khh0w3.sql:75: ERROR:  relation "employees" already exists
+psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789023114840_khh0w3.sql:81: ERROR:  relation "departments" already exists
+psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789023114840_khh0w3.sql:88: ERROR:  relation "projects" already exists
+psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789023114840_khh0w3.sql:95: ERROR:  relation "employee_projects" already exists
+psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789023114840_khh0w3.sql:101: ERROR:  duplicate key value violates unique constraint "departments_pkey"
+DETAIL:  Key (id)=(1) already exists.
+psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789023114840_khh0w3.sql:112: ERROR:  duplicate key value violates unique constraint "employees_pkey"
+DETAIL:  Key (id)=(1) already exists.
+psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789023114840_khh0w3.sql:118: ERROR:  duplicate key value violates unique constraint "projects_pkey"
+DETAIL:  Key (id)=(1) already exists.
+psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789023114840_khh0w3.sql:128: ERROR:  duplicate key value violates unique constraint "employee_projects_pkey"
+DETAIL:  Key (employee_id, project_id)=(1, 1) already exists.
+1	4	2020-01-15, 2021-03-22, 2022-02-14, 2023-01-12
+2	2	2021-04-18, 2021-06-10
+3	2	2020-09-03, 2022-08-30
+4	1	2019-11-05
