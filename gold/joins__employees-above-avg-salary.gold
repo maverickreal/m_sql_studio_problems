@@ -1,0 +1,7 @@
+psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789016144200_xqeutk.sql:73: ERROR:  relation "employees" already exists
+psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789016144200_xqeutk.sql:78: ERROR:  null value in column "salary" of relation "employees" violates not-null constraint
+DETAIL:  Failing row contains (1, 1, 100000, null, null, null).
+1
+4
+6
+7

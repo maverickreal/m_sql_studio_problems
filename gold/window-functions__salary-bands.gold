@@ -1,0 +1,3 @@
+psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789016144854_u66cv7.sql:89: ERROR:  column "salary_band" does not exist
+LINE 16:   CASE salary_band 
+                ^

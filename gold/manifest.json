@@ -1,0 +1,201 @@
+{
+  "generatedAt": "2026-09-10T04:55:44.986Z",
+  "total": 32,
+  "passed": 32,
+  "failed": 0,
+  "skipped": 0,
+  "results": [
+    {
+      "slug": "employees-multiple-projects",
+      "category": "advanced-joins",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/advanced-joins__employees-multiple-projects.gold"
+    },
+    {
+      "slug": "employees-same-salary",
+      "category": "advanced-joins",
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/advanced-joins__employees-same-salary.gold"
+    },
+    {
+      "slug": "lead-vs-developer-roles",
+      "category": "advanced-joins",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/advanced-joins__lead-vs-developer-roles.gold"
+    },
+    {
+      "slug": "avg-salary-by-role",
+      "category": "aggregation",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__avg-salary-by-role.gold"
+    },
+    {
+      "slug": "dept-employee-count",
+      "category": "aggregation",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__dept-employee-count.gold"
+    },
+    {
+      "slug": "dept-salary-stats",
+      "category": "aggregation",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__dept-salary-stats.gold"
+    },
+    {
+      "slug": "dept-with-3plus-employees",
+      "category": "aggregation",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__dept-with-3plus-employees.gold"
+    },
+    {
+      "slug": "high-value-projects",
+      "category": "aggregation",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__high-value-projects.gold"
+    },
+    {
+      "slug": "manager-with-most-reports",
+      "category": "aggregation",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__manager-with-most-reports.gold"
+    },
+    {
+      "slug": "project-budget-summary",
+      "category": "aggregation",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__project-budget-summary.gold"
+    },
+    {
+      "slug": "project-role-distribution",
+      "category": "aggregation",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__project-role-distribution.gold"
+    },
+    {
+      "slug": "projects-by-dept-budget",
+      "category": "aggregation",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__projects-by-dept-budget.gold"
+    },
+    {
+      "slug": "recent-hires-by-dept",
+      "category": "aggregation",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__recent-hires-by-dept.gold"
+    },
+    {
+      "slug": "top-earners-by-dept",
+      "category": "aggregation",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__top-earners-by-dept.gold"
+    },
+    {
+      "slug": "employees-above-avg-salary",
+      "category": "joins",
+      "lines": 7,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/joins__employees-above-avg-salary.gold"
+    },
+    {
+      "slug": "employees-sharing-manager",
+      "category": "joins",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/joins__employees-sharing-manager.gold"
+    },
+    {
+      "slug": "employees-with-no-project",
+      "category": "joins",
+      "lines": 8,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/joins__employees-with-no-project.gold"
+    },
+    {
+      "slug": "projects-with-dept-and-lead",
+      "category": "joins",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/joins__projects-with-dept-and-lead.gold"
+    },
+    {
+      "slug": "manager-hierarchy",
+      "category": "recursive",
+      "lines": 9,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/recursive__manager-hierarchy.gold"
+    },
+    {
+      "slug": "project-dependency-chain",
+      "category": "recursive",
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/recursive__project-dependency-chain.gold"
+    },
+    {
+      "slug": "eng-and-sales-union",
+      "category": "set-operations",
+      "lines": 6,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/set-operations__eng-and-sales-union.gold"
+    },
+    {
+      "slug": "projects-no-employees",
+      "category": "set-operations",
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/set-operations__projects-no-employees.gold"
+    },
+    {
+      "slug": "dept-avg-vs-overall-avg",
+      "category": "subqueries",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/subqueries__dept-avg-vs-overall-avg.gold"
+    },
+    {
+      "slug": "employees-before-2020",
+      "category": "subqueries",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/subqueries__employees-before-2020.gold"
+    },
+    {
+      "slug": "employees-hired-recently",
+      "category": "subqueries",
+      "lines": 6,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/subqueries__employees-hired-recently.gold"
+    },
+    {
+      "slug": "eng-only-projects",
+      "category": "subqueries",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/subqueries__eng-only-projects.gold"
+    },
+    {
+      "slug": "managers-and-reports",
+      "category": "subqueries",
+      "lines": 11,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/subqueries__managers-and-reports.gold"
+    },
+    {
+      "slug": "dept-highest-budget-project",
+      "category": "window-functions",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/window-functions__dept-highest-budget-project.gold"
+    },
+    {
+      "slug": "running-salary-total",
+      "category": "window-functions",
+      "lines": 9,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/window-functions__running-salary-total.gold"
+    },
+    {
+      "slug": "salary-bands",
+      "category": "window-functions",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/window-functions__salary-bands.gold"
+    },
+    {
+      "slug": "salary-percentile",
+      "category": "window-functions",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/window-functions__salary-percentile.gold"
+    },
+    {
+      "slug": "salary-rank-by-dept",
+      "category": "window-functions",
+      "lines": 9,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/window-functions__salary-rank-by-dept.gold"
+    }
+  ]
+}
