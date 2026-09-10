@@ -9,18 +9,39 @@ category: joins
 datasets:
   - hr
 sampleInput:
-  - "projects(id, name, dept_id, budget, lead_id)"
+  - "projects(id, name, dept_id, budget)"
   - "departments(id, name, location)"
   - "employees(id, name, dept_id, salary, hire_date, manager_id)"
-sampleOutput: "project | dept | lead"
+  - "employee_projects(employee_id, project_id, role)"
+sampleOutput: "project | dept | lead\n---|---|---\nBrand Campaign | Marketing | Grace Lee\nCRM Integration | Sales | David Wilson\nData Pipeline | Engineering | Alice Chen\nMobile App | Engineering | Bob Smith"
 initSql: |
   -- Dataset: hr
 solutionSql: |
   SELECT p.name AS project, d.name AS dept, e.name AS lead
   FROM projects p
   JOIN departments d ON p.dept_id = d.id
-  JOIN employees e ON p.lead_id = e.id
+  JOIN employee_projects ep ON p.id = ep.project_id AND ep.role = 'Lead'
+  JOIN employees e ON ep.employee_id = e.id
   ORDER BY project;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT p.name AS project, d.name AS dept, e.name AS lead
+      FROM projects p
+      JOIN departments d ON p.dept_id = d.id
+      JOIN employee_projects ep ON p.id = ep.project_id AND ep.role = 'Lead'
+      JOIN employees e ON ep.employee_id = e.id
+      ORDER BY project
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES 
+        ('Brand Campaign', 'Marketing', 'Grace Lee'),
+        ('CRM Integration', 'Sales', 'David Wilson'),
+        ('Data Pipeline', 'Engineering', 'Alice Chen'),
+        ('Mobile App', 'Engineering', 'Bob Smith')
+    ) expected(project, dept, lead)
+  ) THEN 1 ELSE 0 END AS correct;
 orderMatters: true
 origin: first-party
 author: sat-c2

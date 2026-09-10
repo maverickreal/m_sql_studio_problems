@@ -19,6 +19,22 @@ solutionSql: |
   JOIN employees b ON a.manager_id = b.manager_id AND a.id < b.id
   WHERE a.manager_id IS NOT NULL
   ORDER BY a.manager_id, emp_a, emp_b;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT a.name AS emp_a, b.name AS emp_b, a.manager_id
+      FROM employees a
+      JOIN employees b ON a.manager_id = b.manager_id AND a.id < b.id
+      WHERE a.manager_id IS NOT NULL
+      ORDER BY a.manager_id, emp_a, emp_b
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES 
+        ('Bob Smith', 'Carol Davis', 1),
+        ('Eva Martinez', 'Frank Brown', 4)
+    ) expected(emp_a, emp_b, manager_id)
+  ) THEN 1 ELSE 0 END AS correct;
 orderMatters: true
 origin: first-party
 author: sat-c2

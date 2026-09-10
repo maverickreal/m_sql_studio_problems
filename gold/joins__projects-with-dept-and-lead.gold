@@ -1,4 +1,4 @@
-psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789016144332_fpyup0.sql:74: ERROR:  column p.lead_id does not exist
-LINE 4: JOIN employees e ON p.lead_id = e.id
-                            ^
-HINT:  Perhaps you meant to reference the column "p.dept_id".
+Brand Campaign	Marketing	Grace Lee
+CRM Integration	Sales	David Wilson
+Data Pipeline	Engineering	Alice Chen
+Mobile App	Engineering	Bob Smith
