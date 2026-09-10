@@ -1,0 +1,28 @@
+id: "0192f0a1-2b3c-7d8e-9f0a-1b2c3d4e5f91"
+slug: "projects-with-dept-and-lead"
+title: "Projects With Department Name and Lead"
+description: |
+  For each project, return project name, department name, and the lead employee name.
+difficulty: easy
+mode: read
+category: joins
+datasets:
+  - hr
+sampleInput:
+  - "projects(id, name, dept_id, budget, lead_id)"
+  - "departments(id, name, location)"
+  - "employees(id, name, dept_id, salary, hire_date, manager_id)"
+sampleOutput: "project | dept | lead"
+initSql: |
+  -- Dataset: hr
+solutionSql: |
+  SELECT p.name AS project, d.name AS dept, e.name AS lead
+  FROM projects p
+  JOIN departments d ON p.dept_id = d.id
+  JOIN employees e ON p.lead_id = e.id
+  ORDER BY project;
+orderMatters: true
+origin: first-party
+author: sat-c2
+license: CC-BY-4.0
+schema_version: 1
