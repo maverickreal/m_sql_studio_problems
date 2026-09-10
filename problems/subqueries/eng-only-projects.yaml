@@ -1,0 +1,63 @@
+id: "0192f0a1-2b3c-7d8e-9f0a-1b2c3d4e5f7d"
+slug: "eng-only-projects"
+title: "Projects Staffed Only by Engineering"
+description: |
+  Find projects where all assigned employees are from the Engineering department. Use NOT EXISTS to verify no non-Engineering employees are on the project.
+difficulty: hard
+mode: read
+category: subqueries
+datasets:
+  - hr
+sampleInput:
+  - "departments(id, name, location)"
+  - "employees(id, name, dept_id, salary, hire_date, manager_id)"
+  - "projects(id, name, dept_id, budget)"
+  - "employee_projects(employee_id, project_id, role)"
+sampleOutput: "project_name | dept_name\n---|---\nData Pipeline | Engineering\nMobile App | Engineering"
+initSql: |
+  -- Dataset: hr (see datasets/hr/ for schema + seed)
+solutionSql: |
+  SELECT p.name AS project_name, d.name AS dept_name
+  FROM projects p
+  JOIN departments d ON p.dept_id = d.id
+  WHERE EXISTS (
+    SELECT 1 FROM employee_projects ep WHERE ep.project_id = p.id
+  )
+  AND NOT EXISTS (
+    SELECT 1 
+    FROM employee_projects ep
+    JOIN employees e ON ep.employee_id = e.id
+    JOIN departments de ON e.dept_id = de.id
+    WHERE ep.project_id = p.id AND de.name != 'Engineering'
+  )
+  ORDER BY p.name;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT p.name AS project_name, d.name AS dept_name
+      FROM projects p
+      JOIN departments d ON p.dept_id = d.id
+      WHERE EXISTS (
+        SELECT 1 FROM employee_projects ep WHERE ep.project_id = p.id
+      )
+      AND NOT EXISTS (
+        SELECT 1 
+        FROM employee_projects ep
+        JOIN employees e ON ep.employee_id = e.id
+        JOIN departments de ON e.dept_id = de.id
+        WHERE ep.project_id = p.id AND de.name != 'Engineering'
+      )
+      ORDER BY p.name
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES 
+        ('Data Pipeline', 'Engineering'),
+        ('Mobile App', 'Engineering')
+    ) expected(project_name, dept_name)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

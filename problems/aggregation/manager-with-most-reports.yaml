@@ -1,0 +1,58 @@
+id: "0192f0a1-2b3c-7d8e-9f0a-1b2c3d4e5f7e"
+slug: "manager-with-most-reports"
+title: "Manager With Most Direct Reports"
+description: |
+  Find the manager(s) with the most direct reports. Return manager name and report count.
+difficulty: medium
+mode: read
+category: aggregation
+datasets:
+  - hr
+sampleInput:
+  - "employees(id, name, dept_id, salary, hire_date, manager_id)"
+sampleOutput: "manager_name | report_count\n---|---\nAlice Chen | 2\nDavid Wilson | 2"
+initSql: |
+  -- Dataset: hr (see datasets/hr/ for schema + seed)
+solutionSql: |
+  SELECT m.name AS manager_name, COUNT(e.id) AS report_count
+  FROM employees e
+  JOIN employees m ON e.manager_id = m.id
+  GROUP BY m.id, m.name
+  HAVING COUNT(e.id) = (
+    SELECT MAX(report_cnt) FROM (
+      SELECT COUNT(*) AS report_cnt
+      FROM employees
+      WHERE manager_id IS NOT NULL
+      GROUP BY manager_id
+    ) sub
+  )
+  ORDER BY manager_name;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT m.name AS manager_name, COUNT(e.id) AS report_count
+      FROM employees e
+      JOIN employees m ON e.manager_id = m.id
+      GROUP BY m.id, m.name
+      HAVING COUNT(e.id) = (
+        SELECT MAX(report_cnt) FROM (
+          SELECT COUNT(*) AS report_cnt
+          FROM employees
+          WHERE manager_id IS NOT NULL
+          GROUP BY manager_id
+        ) sub
+      )
+      ORDER BY manager_name
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES 
+        ('Alice Chen', 2),
+        ('David Wilson', 2)
+    ) expected(manager_name, report_count)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

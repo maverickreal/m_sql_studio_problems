@@ -1,0 +1,42 @@
+id: "0192f0a1-2b3c-7d8e-9f0a-1b2c3d4e5f82"
+slug: "employees-before-2020"
+title: "Employees Hired Before 2020"
+description: |
+  Find all employees hired before January 1, 2020. Return name, department, and hire date.
+difficulty: easy
+mode: read
+category: subqueries
+datasets:
+  - hr
+sampleInput:
+  - "departments(id, name, location)"
+  - "employees(id, name, dept_id, salary, hire_date, manager_id)"
+sampleOutput: "name | dept_name | hire_date\n---|---|---\nDavid Wilson | Sales | 2019-11-05"
+initSql: |
+  -- Dataset: hr (see datasets/hr/ for schema + seed)
+solutionSql: |
+  SELECT e.name, d.name AS dept_name, e.hire_date
+  FROM employees e
+  JOIN departments d ON e.dept_id = d.id
+  WHERE e.hire_date < '2020-01-01'
+  ORDER BY e.hire_date;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT e.name, d.name AS dept_name, e.hire_date
+      FROM employees e
+      JOIN departments d ON e.dept_id = d.id
+      WHERE e.hire_date < '2020-01-01'
+      ORDER BY e.hire_date
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES 
+        ('David Wilson', 'Sales', '2019-11-05')
+    ) expected(name, dept_name, hire_date)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

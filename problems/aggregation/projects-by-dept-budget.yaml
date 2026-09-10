@@ -1,0 +1,44 @@
+id: "0192f0a1-2b3c-7d8e-9f0a-1b2c3d4e5f83"
+slug: "projects-by-dept-budget"
+title: "Total Project Budget by Department"
+description: |
+  Sum project budgets grouped by department. Return department name and total budget.
+difficulty: easy
+mode: read
+category: aggregation
+datasets:
+  - hr
+sampleInput:
+  - "departments(id, name, location)"
+  - "projects(id, name, dept_id, budget)"
+sampleOutput: "dept_name | total_budget\n---|---\nEngineering | 800000\nSales | 200000\nMarketing | 150000"
+initSql: |
+  -- Dataset: hr (see datasets/hr/ for schema + seed)
+solutionSql: |
+  SELECT d.name AS dept_name, SUM(p.budget) AS total_budget
+  FROM projects p
+  JOIN departments d ON p.dept_id = d.id
+  GROUP BY d.name
+  ORDER BY total_budget DESC;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT d.name AS dept_name, SUM(p.budget) AS total_budget
+      FROM projects p
+      JOIN departments d ON p.dept_id = d.id
+      GROUP BY d.name
+      ORDER BY total_budget DESC
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES 
+        ('Engineering', 800000),
+        ('Sales', 200000),
+        ('Marketing', 150000)
+    ) expected(dept_name, total_budget)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

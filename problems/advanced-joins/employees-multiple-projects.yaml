@@ -1,0 +1,51 @@
+id: "0192f0a1-2b3c-7d8e-9f0a-1b2c3d4e5f73"
+slug: "employees-multiple-projects"
+title: "Employees on Multiple Projects"
+description: |
+  Find employees who work on more than one project. Return employee name, project count, and list of project names (comma-separated).
+difficulty: medium
+mode: read
+category: advanced-joins
+datasets:
+  - hr
+sampleInput:
+  - "employees(id, name, dept_id, salary, hire_date, manager_id)"
+  - "projects(id, name, dept_id, budget)"
+  - "employee_projects(employee_id, project_id, role)"
+sampleOutput: "name | project_count | project_names\n---|---|---\nBob Smith | 2 | Data Pipeline,Mobile App"
+initSql: |
+  -- Dataset: hr (see datasets/hr/ for schema + seed)
+solutionSql: |
+  SELECT e.name,
+    COUNT(ep.project_id) AS project_count,
+    STRING_AGG(p.name, ',' ORDER BY p.name) AS project_names
+  FROM employees e
+  JOIN employee_projects ep ON e.id = ep.employee_id
+  JOIN projects p ON ep.project_id = p.id
+  GROUP BY e.id, e.name
+  HAVING COUNT(ep.project_id) > 1
+  ORDER BY project_count DESC, e.name;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT e.name,
+        COUNT(ep.project_id) AS project_count,
+        STRING_AGG(p.name, ',' ORDER BY p.name) AS project_names
+      FROM employees e
+      JOIN employee_projects ep ON e.id = ep.employee_id
+      JOIN projects p ON ep.project_id = p.id
+      GROUP BY e.id, e.name
+      HAVING COUNT(ep.project_id) > 1
+      ORDER BY project_count DESC, e.name
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES 
+        ('Bob Smith', 2, 'Data Pipeline,Mobile App')
+    ) expected(name, project_count, project_names)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: false
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

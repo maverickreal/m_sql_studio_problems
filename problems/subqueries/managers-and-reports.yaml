@@ -1,0 +1,49 @@
+id: "0192f0a1-2b3c-7d8e-9f0a-1b2c3d4e5f6f"
+slug: "managers-and-reports"
+title: "Managers and Their Direct Reports"
+description: |
+  List each manager with their direct reports' names. Include managers with no direct reports.
+difficulty: medium
+mode: read
+category: subqueries
+datasets:
+  - hr
+sampleInput:
+  - "employees(id, name, dept_id, salary, hire_date, manager_id)"
+sampleOutput: "manager_name | report_name\n---|---\nAlice Chen | Bob Smith\nAlice Chen | Carol Davis\nBob Smith | \nCarol Davis | \nDavid Wilson | Eva Martinez\nDavid Wilson | Frank Brown\nEva Martinez | \nFrank Brown | \nGrace Lee | Henry Taylor\nHenry Taylor | \nIris Anderson | "
+initSql: |
+  -- Dataset: hr (see datasets/hr/ for schema + seed)
+solutionSql: |
+  SELECT m.name AS manager_name, e.name AS report_name
+  FROM employees e
+  RIGHT JOIN employees m ON e.manager_id = m.id
+  ORDER BY m.name, e.name;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT m.name AS manager_name, e.name AS report_name
+      FROM employees e
+      RIGHT JOIN employees m ON e.manager_id = m.id
+      ORDER BY m.name, e.name
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES 
+        ('Alice Chen', 'Bob Smith'),
+        ('Alice Chen', 'Carol Davis'),
+        ('Bob Smith', NULL),
+        ('Carol Davis', NULL),
+        ('David Wilson', 'Eva Martinez'),
+        ('David Wilson', 'Frank Brown'),
+        ('Eva Martinez', NULL),
+        ('Frank Brown', NULL),
+        ('Grace Lee', 'Henry Taylor'),
+        ('Henry Taylor', NULL),
+        ('Iris Anderson', NULL)
+    ) expected(manager_name, report_name)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1
