@@ -1,0 +1,26 @@
+id: "01a0972c-be00-74b6-a741-27358040a9da"
+slug: "airline-seats-booked-per-flight"
+title: "Airline: Seats Booked Per Flight"
+description: |
+  Total up the booked seats for each flight number, ordered by flight number.
+difficulty: medium
+mode: read
+category: aggregation
+sampleInput:
+  - "flights(id, flight_no, origin, destination)"
+  - "bookings(id, flight_id, seats)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE flights (id SERIAL PRIMARY KEY, flight_no TEXT, origin TEXT, destination TEXT);
+  CREATE TABLE bookings (id SERIAL PRIMARY KEY, flight_id INT REFERENCES flights(id), seats INT);
+  INSERT INTO flights (flight_no, origin, destination) VALUES ('KQ 101', 'Nairobi', 'Lagos'), ('KQ 205', 'Nairobi', 'Accra');
+  INSERT INTO bookings (flight_id, seats) VALUES (1, 120), (1, 90), (2, 60), (2, 36);
+solutionSql: |
+  SELECT f.flight_no, SUM(b.seats) as booked FROM flights f JOIN bookings b ON f.id = b.flight_id GROUP BY f.flight_no ORDER BY f.flight_no;
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

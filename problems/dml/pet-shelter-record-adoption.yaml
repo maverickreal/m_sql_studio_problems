@@ -1,0 +1,23 @@
+id: "01a0972c-be82-7341-864f-d8ab36f6c80b"
+slug: "pet-shelter-record-adoption"
+title: "Pet Shelter: Record an Adoption"
+description: |
+  Mark the pet named 'Miso' as adopted.
+difficulty: medium
+mode: write
+category: dml
+sampleInput:
+  - "shelter_pets(id, pet_name, species, adopted)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE shelter_pets (id SERIAL PRIMARY KEY, pet_name TEXT, species TEXT, adopted BOOLEAN);
+  INSERT INTO shelter_pets (pet_name, species, adopted) VALUES ('Miso', 'cat', false), ('Biscuit', 'dog', false), ('Pip', 'rabbit', true);
+solutionSql: |
+  UPDATE shelter_pets SET adopted = true WHERE pet_name = 'Miso';
+validationSql: |
+  SELECT adopted FROM shelter_pets WHERE pet_name = 'Miso';
+orderMatters: false
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

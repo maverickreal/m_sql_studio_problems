@@ -1,0 +1,23 @@
+id: "01a0972c-bd56-7c91-8016-3f60ab527be9"
+slug: "library-outdated-books-cleanup"
+title: "Library System: Outdated Books Cleanup"
+description: |
+  Remove all books published before 1950 from the books table.
+difficulty: hard
+mode: write
+category: dml
+sampleInput:
+  - "books(id, title, author, publish_year)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE books (id SERIAL PRIMARY KEY, title TEXT, author TEXT, publish_year INT);
+  INSERT INTO books (title, author, publish_year) VALUES ('The Great Gatsby', 'F. Scott Fitzgerald', 1925), ('1984', 'George Orwell', 1949), ('The Catcher in the Rye', 'J.D. Salinger', 1951);
+solutionSql: |
+  DELETE FROM books WHERE publish_year < 1950;
+validationSql: |
+  SELECT COUNT(*) FROM books;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

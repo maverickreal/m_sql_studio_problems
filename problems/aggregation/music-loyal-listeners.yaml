@@ -1,0 +1,26 @@
+id: "01a0972c-be40-7839-9653-2ad763ce9d1f"
+slug: "music-loyal-listeners"
+title: "Music: Loyal Listeners"
+description: |
+  Find listeners who have spun at least 3 different tracks.
+difficulty: hard
+mode: read
+category: aggregation
+sampleInput:
+  - "tracks2(id, title)"
+  - "spins(id, listener_name, track_id)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE tracks2 (id SERIAL PRIMARY KEY, title TEXT);
+  CREATE TABLE spins (id SERIAL PRIMARY KEY, listener_name TEXT, track_id INT REFERENCES tracks2(id));
+  INSERT INTO tracks2 (title) VALUES ('Night Bus'), ('Glass House'), ('Static Bloom'), ('Paper Sun');
+  INSERT INTO spins (listener_name, track_id) VALUES ('Amy', 1), ('Amy', 2), ('Amy', 3), ('Amy', 1), ('Bo', 1), ('Bo', 2), ('Cy', 4), ('Cy', 4);
+solutionSql: |
+  SELECT listener_name FROM spins GROUP BY listener_name HAVING COUNT(DISTINCT track_id) >= 3;
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: false
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

@@ -1,0 +1,23 @@
+id: "01a0972c-be75-7533-8827-910f9ba16380"
+slug: "gym-deactivate-lapsed-trials"
+title: "Gym: Deactivate Lapsed Trials"
+description: |
+  Set active to false for every trial membership that ended before 2024-05-01.
+difficulty: easy
+mode: write
+category: dml
+sampleInput:
+  - "trial_members(id, full_name, trial_ends, active)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE trial_members (id SERIAL PRIMARY KEY, full_name TEXT, trial_ends DATE, active BOOLEAN);
+  INSERT INTO trial_members (full_name, trial_ends, active) VALUES ('Kim', '2024-04-20', true), ('Lou', '2024-04-28', true), ('Pam', '2024-05-10', true);
+solutionSql: |
+  UPDATE trial_members SET active = false WHERE trial_ends < '2024-05-01';
+validationSql: |
+  SELECT full_name FROM trial_members WHERE active = true ORDER BY full_name;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

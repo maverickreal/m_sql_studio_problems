@@ -1,0 +1,23 @@
+id: "01a0972c-bdb7-75ed-b909-2eb440894208"
+slug: "transit-downtown-stops-frequency"
+title: "Transit: Downtown Stops by Frequency"
+description: |
+  Show downtown stops with their weekday headway, most frequent service first.
+difficulty: easy
+mode: read
+category: query-patterns
+sampleInput:
+  - "stops(id, stop_name, zone, weekday_headway_min)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE stops (id SERIAL PRIMARY KEY, stop_name TEXT, zone TEXT, weekday_headway_min INT);
+  INSERT INTO stops (stop_name, zone, weekday_headway_min) VALUES ('Central Plaza', 'downtown', 5), ('Old Market', 'downtown', 8), ('North Depot', 'uptown', 15), ('River Gate', 'downtown', 12), ('Hill View', 'suburb', 30);
+solutionSql: |
+  SELECT stop_name, weekday_headway_min FROM stops WHERE zone = 'downtown' ORDER BY weekday_headway_min;
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

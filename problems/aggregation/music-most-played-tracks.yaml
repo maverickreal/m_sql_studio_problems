@@ -1,0 +1,23 @@
+id: "01a0972c-bdc9-7add-b237-dcedc4ac9143"
+slug: "music-most-played-tracks"
+title: "Music: Most Played Tracks"
+description: |
+  Get the top 3 tracks by play count, most played first.
+difficulty: easy
+mode: read
+category: aggregation
+sampleInput:
+  - "tracks(id, title, artist, plays)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE tracks (id SERIAL PRIMARY KEY, title TEXT, artist TEXT, plays INT);
+  INSERT INTO tracks (title, artist, plays) VALUES ('Night Bus', 'The Comets', 910), ('Glass House', 'Mira', 720), ('Static Bloom', 'The Comets', 655), ('Paper Sun', 'Koda', 410), ('Low Orbit', 'Mira', 95);
+solutionSql: |
+  SELECT title, artist FROM tracks ORDER BY plays DESC LIMIT 3;
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

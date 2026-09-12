@@ -1,0 +1,23 @@
+id: "01a0972c-be9f-7d78-a06a-655112c1b383"
+slug: "bank-post-monthly-interest"
+title: "Bank: Post Monthly Interest"
+description: |
+  Grow every savings balance of 1000 or more by its own rate_pct percentage. Leave smaller balances untouched.
+difficulty: hard
+mode: write
+category: dml
+sampleInput:
+  - "savings(id, holder_name, balance, rate_pct)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE savings (id SERIAL PRIMARY KEY, holder_name TEXT, balance DECIMAL(12,2), rate_pct DECIMAL(5,2));
+  INSERT INTO savings (holder_name, balance, rate_pct) VALUES ('Ann', 5000.00, 2.00), ('Ben', 800.00, 2.00), ('Cara', 12000.00, 1.50);
+solutionSql: |
+  UPDATE savings SET balance = balance * (1 + rate_pct / 100) WHERE balance >= 1000;
+validationSql: |
+  SELECT holder_name, balance FROM savings ORDER BY holder_name;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

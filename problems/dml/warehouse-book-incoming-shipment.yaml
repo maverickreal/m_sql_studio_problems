@@ -1,0 +1,23 @@
+id: "01a0972c-be92-75ac-b21e-16e3f3926697"
+slug: "warehouse-book-incoming-shipment"
+title: "Warehouse: Book an Incoming Shipment"
+description: |
+  Insert the newly arrived shipment of 150 units under SKU 'W-500' into stock.
+difficulty: easy
+mode: write
+category: dml
+sampleInput:
+  - "stock(id, sku, qty)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE stock (id SERIAL PRIMARY KEY, sku TEXT, qty INT);
+  INSERT INTO stock (sku, qty) VALUES ('W-100', 40), ('W-200', 75);
+solutionSql: |
+  INSERT INTO stock (sku, qty) VALUES ('W-500', 150);
+validationSql: |
+  SELECT qty FROM stock WHERE sku = 'W-500';
+orderMatters: false
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

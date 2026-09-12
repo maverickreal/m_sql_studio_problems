@@ -1,0 +1,23 @@
+id: "01a0972c-bd8e-7af6-b149-605387037ac7"
+slug: "cinema-evening-showtimes"
+title: "Cinema: Evening Showtimes"
+description: |
+  Show the film title and start time for every screening that starts at or after 18:00, earliest first.
+difficulty: easy
+mode: read
+category: date
+sampleInput:
+  - "screenings(id, film_title, starts_at, hall)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE screenings (id SERIAL PRIMARY KEY, film_title TEXT, starts_at TEXT, hall TEXT);
+  INSERT INTO screenings (film_title, starts_at, hall) VALUES ('Solaris Return', '14:30', 'A'), ('Paper Moons', '18:15', 'B'), ('Harbor Nights', '20:45', 'A'), ('Dust Trails', '21:30', 'C');
+solutionSql: |
+  SELECT film_title, starts_at FROM screenings WHERE starts_at >= '18:00' ORDER BY starts_at;
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

@@ -1,0 +1,23 @@
+id: "01a0972c-bdaa-71d8-8ca5-c0052aaf8fca"
+slug: "gym-active-members-roll"
+title: "Gym: Active Members Roll"
+description: |
+  List the full name and plan of every member whose membership is currently active, in alphabetical order.
+difficulty: easy
+mode: read
+category: query-patterns
+sampleInput:
+  - "members(id, full_name, plan, active)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE members (id SERIAL PRIMARY KEY, full_name TEXT, plan TEXT, active BOOLEAN);
+  INSERT INTO members (full_name, plan, active) VALUES ('Ana', 'monthly', true), ('Ben', 'annual', false), ('Jo', 'annual', true), ('Max', 'monthly', false), ('Rae', 'monthly', true);
+solutionSql: |
+  SELECT full_name, plan FROM members WHERE active = true ORDER BY full_name;
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

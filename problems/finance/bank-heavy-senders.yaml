@@ -1,0 +1,23 @@
+id: "01a0972c-be5a-7dc7-879c-bf006786a0dc"
+slug: "bank-heavy-senders"
+title: "Bank: Heavy Senders"
+description: |
+  Find senders whose transfers add up to more than 10000, with their totals, biggest first.
+difficulty: hard
+mode: read
+category: finance
+sampleInput:
+  - "transfers(id, sender_acct, amount)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE transfers (id SERIAL PRIMARY KEY, sender_acct TEXT, amount DECIMAL(12,2));
+  INSERT INTO transfers (sender_acct, amount) VALUES ('AC-77', 8000.00), ('AC-77', 6500.00), ('AC-31', 9000.00), ('AC-31', 2200.00), ('AC-09', 4000.00), ('AC-09', 1500.00);
+solutionSql: |
+  SELECT sender_acct, SUM(amount) as total_sent FROM transfers GROUP BY sender_acct HAVING SUM(amount) > 10000 ORDER BY total_sent DESC;
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

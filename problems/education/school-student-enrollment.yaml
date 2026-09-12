@@ -1,0 +1,29 @@
+id: "01a0972c-bd43-7fbc-ad60-5207b504e5a6"
+slug: "school-student-enrollment"
+title: "School Management: Student Enrollment"
+description: |
+  Find all students enrolled in 'Computer Science 101'. Use JOINs across students, enrollments, and courses.
+difficulty: medium
+mode: read
+category: education
+sampleInput:
+  - "students(id, name)"
+  - "courses(id, title)"
+  - "enrollments(student_id, course_id)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE students (id SERIAL PRIMARY KEY, name TEXT);
+  CREATE TABLE courses (id SERIAL PRIMARY KEY, title TEXT);
+  CREATE TABLE enrollments (student_id INT REFERENCES students(id), course_id INT REFERENCES courses(id));
+  INSERT INTO students (name) VALUES ('Alice'), ('Bob'), ('Charlie');
+  INSERT INTO courses (title) VALUES ('Computer Science 101'), ('Database Systems');
+  INSERT INTO enrollments (student_id, course_id) VALUES (1, 1), (2, 2), (3, 1);
+solutionSql: |
+  SELECT s.name FROM students s JOIN enrollments e ON s.id = e.student_id JOIN courses c ON e.course_id = c.id WHERE c.title = 'Computer Science 101';
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: false
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

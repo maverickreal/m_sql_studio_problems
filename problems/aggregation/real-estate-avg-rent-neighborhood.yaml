@@ -1,0 +1,23 @@
+id: "01a0972c-be2c-7102-af86-6e601d35c37c"
+slug: "real-estate-avg-rent-neighborhood"
+title: "Real Estate: Average Rent by Neighborhood"
+description: |
+  For neighborhoods with at least 2 listings, show the average monthly rent rounded to 2 decimals, priciest first.
+difficulty: medium
+mode: read
+category: aggregation
+sampleInput:
+  - "listings(id, neighborhood, bedrooms, monthly_rent)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE listings (id SERIAL PRIMARY KEY, neighborhood TEXT, bedrooms INT, monthly_rent INT);
+  INSERT INTO listings (neighborhood, bedrooms, monthly_rent) VALUES ('Old Town', 1, 1200), ('Old Town', 2, 1350), ('Riverside', 1, 900), ('Hillcrest', 2, 2000), ('Hillcrest', 3, 2200);
+solutionSql: |
+  SELECT neighborhood, ROUND(AVG(monthly_rent), 2) as avg_rent FROM listings GROUP BY neighborhood HAVING COUNT(*) >= 2 ORDER BY avg_rent DESC;
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

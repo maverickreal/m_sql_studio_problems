@@ -10,7 +10,6 @@
     "difficulty",
     "mode",
     "category",
-    "datasets",
     "sampleInput",
     "sampleOutput",
     "initSql",

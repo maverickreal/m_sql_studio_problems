@@ -1,0 +1,23 @@
+id: "01a0972c-bd6e-7cad-bf53-d66e2d7aaadf"
+slug: "leaderboard-top-scores"
+title: "Leaderboard: Top Scores"
+description: |
+  Get the top 3 users by score in descending order.
+difficulty: easy
+mode: read
+category: aggregation
+sampleInput:
+  - "leaderboard(id, username, score)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE leaderboard (id SERIAL PRIMARY KEY, username TEXT, score INT);
+  INSERT INTO leaderboard (username, score) VALUES ('Alice', 75), ('Bob', 80), ('Charlie', 95), ('Dave', 60);
+solutionSql: |
+  SELECT username, score FROM leaderboard ORDER BY score DESC LIMIT 3;
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

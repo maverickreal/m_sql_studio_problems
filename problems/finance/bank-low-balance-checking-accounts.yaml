@@ -1,0 +1,26 @@
+id: "01a0972c-be13-70c9-85e7-346cda9c72e1"
+slug: "bank-low-balance-checking-accounts"
+title: "Bank: Low Balance Checking Accounts"
+description: |
+  Find checking accounts under 500 with the holder name and balance, poorest first.
+difficulty: medium
+mode: read
+category: finance
+sampleInput:
+  - "holders(id, holder_name)"
+  - "accounts(id, holder_id, acct_type, balance)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE holders (id SERIAL PRIMARY KEY, holder_name TEXT);
+  CREATE TABLE accounts (id SERIAL PRIMARY KEY, holder_id INT REFERENCES holders(id), acct_type TEXT, balance DECIMAL(12,2));
+  INSERT INTO holders (holder_name) VALUES ('Tess'), ('Raj'), ('Moe'), ('Ada');
+  INSERT INTO accounts (holder_id, acct_type, balance) VALUES (1, 'checking', 120.00), (2, 'checking', 340.50), (3, 'checking', 1500.00), (4, 'savings', 80.00);
+solutionSql: |
+  SELECT h.holder_name, a.balance FROM holders h JOIN accounts a ON h.id = a.holder_id WHERE a.acct_type = 'checking' AND a.balance < 500 ORDER BY a.balance;
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

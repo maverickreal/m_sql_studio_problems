@@ -1,0 +1,23 @@
+id: "01a0972c-bd62-7262-9bb5-3527b3d9751e"
+slug: "hr-employee-salary-update"
+title: "HR: Employee Salary Update"
+description: |
+  Give a 10% raise to all employees in the 'Engineering' department.
+difficulty: hard
+mode: write
+category: dml
+sampleInput:
+  - "employees(id, name, department, salary)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE employees (id SERIAL PRIMARY KEY, name TEXT, department TEXT, salary DECIMAL(10,2));
+  INSERT INTO employees (name, department, salary) VALUES ('Alice', 'Engineering', 100000.00), ('Bob', 'Marketing', 80000.00), ('Charlie', 'Engineering', 90000.00);
+solutionSql: |
+  UPDATE employees SET salary = salary * 1.1 WHERE department = 'Engineering';
+validationSql: |
+  SELECT salary FROM employees WHERE department = 'Engineering' ORDER BY name;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

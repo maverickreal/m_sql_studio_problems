@@ -1,0 +1,29 @@
+id: "01a0972c-bd27-76bd-a736-322ada7cc865"
+slug: "ecommerce-order-totals"
+title: "E-commerce: Order Totals"
+description: |
+  Calculate the total amount spent by each customer. Join customers, orders, and order_items tables and group by customer name.
+difficulty: medium
+mode: read
+category: commerce
+sampleInput:
+  - "customers(id, name)"
+  - "orders(id, customer_id, order_date)"
+  - "order_items(id, order_id, product_name, price, quantity)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE customers (id SERIAL PRIMARY KEY, name TEXT);
+  CREATE TABLE orders (id SERIAL PRIMARY KEY, customer_id INT REFERENCES customers(id), order_date DATE);
+  CREATE TABLE order_items (id SERIAL PRIMARY KEY, order_id INT REFERENCES orders(id), product_name TEXT, price DECIMAL(10,2), quantity INT);
+  INSERT INTO customers (name) VALUES ('Alice'), ('Bob');
+  INSERT INTO orders (customer_id, order_date) VALUES (1, '2024-01-01'), (2, '2024-01-02');
+  INSERT INTO order_items (order_id, product_name, price, quantity) VALUES (1, 'Widget A', 50.00, 2), (1, 'Widget B', 25.00, 2), (2, 'Widget C', 75.50, 1);
+solutionSql: |
+  SELECT c.name, SUM(oi.price * oi.quantity) as total_spent FROM customers c JOIN orders o ON c.id = o.customer_id JOIN order_items oi ON o.id = oi.order_id GROUP BY c.name;
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: false
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

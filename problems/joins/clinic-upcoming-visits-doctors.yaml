@@ -1,0 +1,26 @@
+id: "01a0972c-bdec-78fb-9b3d-365f276a6d48"
+slug: "clinic-upcoming-visits-doctors"
+title: "Clinic: Upcoming Visits with Doctors"
+description: |
+  List upcoming visits on or after 2024-06-10 with patient name, doctor name, and date, soonest first.
+difficulty: medium
+mode: read
+category: joins
+sampleInput:
+  - "doctors(id, doc_name, specialty)"
+  - "visits(id, doctor_id, patient_name, visit_date)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE doctors (id SERIAL PRIMARY KEY, doc_name TEXT, specialty TEXT);
+  CREATE TABLE visits (id SERIAL PRIMARY KEY, doctor_id INT REFERENCES doctors(id), patient_name TEXT, visit_date DATE);
+  INSERT INTO doctors (doc_name, specialty) VALUES ('Dr. Osei', 'General'), ('Dr. Patel', 'Dental');
+  INSERT INTO visits (doctor_id, patient_name, visit_date) VALUES (1, 'Kim', '2024-06-02'), (1, 'Sam', '2024-06-10'), (2, 'Ivy', '2024-06-12'), (1, 'Leo', '2024-06-15');
+solutionSql: |
+  SELECT v.patient_name, d.doc_name, v.visit_date FROM visits v JOIN doctors d ON v.doctor_id = d.id WHERE v.visit_date >= '2024-06-10' ORDER BY v.visit_date;
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

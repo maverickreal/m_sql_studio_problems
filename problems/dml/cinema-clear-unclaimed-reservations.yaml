@@ -1,0 +1,23 @@
+id: "01a0972c-be68-752a-9e20-fc3036de3952"
+slug: "cinema-clear-unclaimed-reservations"
+title: "Cinema: Clear Unclaimed Past Reservations"
+description: |
+  Delete reservations for dates before 2024-03-01 that were never claimed.
+difficulty: medium
+mode: write
+category: dml
+sampleInput:
+  - "reservations(id, film_title, seats, reserved_for, claimed)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE reservations (id SERIAL PRIMARY KEY, film_title TEXT, seats INT, reserved_for DATE, claimed BOOLEAN);
+  INSERT INTO reservations (film_title, seats, reserved_for, claimed) VALUES ('Paper Moons', 2, '2024-02-20', false), ('Harbor Nights', 4, '2024-02-25', false), ('Dust Trails', 2, '2024-03-10', false), ('Paper Moons', 3, '2024-02-18', true);
+solutionSql: |
+  DELETE FROM reservations WHERE reserved_for < '2024-03-01' AND claimed = false;
+validationSql: |
+  SELECT COUNT(*) FROM reservations;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

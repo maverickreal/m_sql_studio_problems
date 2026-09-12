@@ -1,0 +1,23 @@
+id: "01a0972c-be4d-70b3-83f1-ffc8a406ccd6"
+slug: "airline-one-stop-connections-aster"
+title: "Airline: One-Stop Connections from Aster"
+description: |
+  Using a self-join on routes, find cities reachable from Aster with exactly one stopover.
+difficulty: hard
+mode: read
+category: self-joins
+sampleInput:
+  - "routes(id, from_city, to_city)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE routes (id SERIAL PRIMARY KEY, from_city TEXT, to_city TEXT);
+  INSERT INTO routes (from_city, to_city) VALUES ('Aster', 'Bex'), ('Aster', 'Cora'), ('Bex', 'Dell'), ('Cora', 'Dell'), ('Cora', 'Elm'), ('Dell', 'Fay');
+solutionSql: |
+  SELECT DISTINCT r2.to_city FROM routes r1 JOIN routes r2 ON r1.to_city = r2.from_city WHERE r1.from_city = 'Aster' AND r2.to_city <> 'Aster' ORDER BY r2.to_city;
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

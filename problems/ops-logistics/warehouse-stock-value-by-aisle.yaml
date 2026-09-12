@@ -1,0 +1,23 @@
+id: "01a0972c-be21-75a4-9923-5d3b056b0cd1"
+slug: "warehouse-stock-value-by-aisle"
+title: "Warehouse: Stock Value by Aisle"
+description: |
+  Compute the total stock value (unit cost times quantity on hand) for each aisle, ordered by aisle.
+difficulty: medium
+mode: read
+category: ops-logistics
+sampleInput:
+  - "parts(id, part_name, aisle, unit_cost, on_hand)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE parts (id SERIAL PRIMARY KEY, part_name TEXT, aisle TEXT, unit_cost DECIMAL(10,2), on_hand INT);
+  INSERT INTO parts (part_name, aisle, unit_cost, on_hand) VALUES ('Bolts', 'A1', 0.50, 400), ('Nuts', 'A1', 0.25, 600), ('Sensor', 'B2', 22.00, 10);
+solutionSql: |
+  SELECT aisle, SUM(unit_cost * on_hand) as stock_value FROM parts GROUP BY aisle ORDER BY aisle;
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

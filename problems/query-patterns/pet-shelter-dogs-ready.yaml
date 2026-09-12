@@ -1,0 +1,23 @@
+id: "01a0972c-bd7b-75fc-9b71-340f19e7e17c"
+slug: "pet-shelter-dogs-ready"
+title: "Pet Shelter: Dogs Ready for Adoption"
+description: |
+  List the name and breed of every dog that is still waiting for a home, sorted alphabetically by name.
+difficulty: easy
+mode: read
+category: query-patterns
+sampleInput:
+  - "dogs(id, name, breed, age_years, adopted)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE dogs (id SERIAL PRIMARY KEY, name TEXT, breed TEXT, age_years INT, adopted BOOLEAN);
+  INSERT INTO dogs (name, breed, age_years, adopted) VALUES ('Bella', 'Labrador', 3, false), ('Max', 'Beagle', 5, true), ('Luna', 'Poodle', 2, false), ('Rocky', 'Bulldog', 4, true), ('Coco', 'Terrier', 1, false);
+solutionSql: |
+  SELECT name, breed FROM dogs WHERE adopted = false ORDER BY name;
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

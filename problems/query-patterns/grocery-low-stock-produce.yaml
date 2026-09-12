@@ -1,0 +1,23 @@
+id: "01a0972c-bd9c-7feb-9897-8195576f1641"
+slug: "grocery-low-stock-produce"
+title: "Grocery: Low Stock Produce"
+description: |
+  Find every produce item with less than 10 kg in stock, showing the lightest stock first.
+difficulty: easy
+mode: read
+category: query-patterns
+sampleInput:
+  - "produce(id, item, stock_kg, unit)"
+sampleOutput: "gold-diff"
+initSql: |
+  CREATE TABLE produce (id SERIAL PRIMARY KEY, item TEXT, stock_kg DECIMAL(8,2), unit TEXT);
+  INSERT INTO produce (item, stock_kg, unit) VALUES ('Apples', 42.50, 'kg'), ('Basil', 6.00, 'kg'), ('Carrots', 18.00, 'kg'), ('Dill', 3.25, 'kg');
+solutionSql: |
+  SELECT item, stock_kg FROM produce WHERE stock_kg < 10 ORDER BY stock_kg;
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1
