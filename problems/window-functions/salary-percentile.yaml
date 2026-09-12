@@ -11,39 +11,44 @@ datasets:
 sampleInput:
   - "departments(id, name, location)"
   - "employees(id, name, dept_id, salary, hire_date, manager_id)"
-sampleOutput: "name | dept_name | salary | percentile_75\n---|---|---|---\nAlice Chen | Engineering | 150000 | 135000\nDavid Wilson | Sales | 110000 | 105000"
+sampleOutput: "name | dept_name | salary | percentile_75\n---|---|---|---\nAlice Chen | Engineering | 150000 | 140000\nGrace Lee | Marketing | 100000 | 96250\nDavid Wilson | Sales | 110000 | 107500"
 initSql: |
   -- Dataset: hr (see datasets/hr/ for schema + seed)
 solutionSql: |
-  WITH salary_percentiles AS (
-    SELECT e.name, d.name AS dept_name, e.salary,
-      PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY e.salary) OVER (PARTITION BY e.dept_id) AS percentile_75
-    FROM employees e
-    JOIN departments d ON e.dept_id = d.id
+  WITH dept_p75 AS (
+    SELECT dept_id,
+      PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY salary) AS percentile_75
+    FROM employees
+    GROUP BY dept_id
   )
-  SELECT name, dept_name, salary, percentile_75
-  FROM salary_percentiles
-  WHERE salary > percentile_75
-  ORDER BY dept_name, salary DESC;
+  SELECT e.name, d.name AS dept_name, e.salary, p.percentile_75
+  FROM employees e
+  JOIN departments d ON e.dept_id = d.id
+  JOIN dept_p75 p ON e.dept_id = p.dept_id
+  WHERE e.salary > p.percentile_75
+  ORDER BY dept_name, e.salary DESC;
 validationSql: |
   SELECT CASE WHEN NOT EXISTS (
     SELECT 1 FROM (
-      WITH salary_percentiles AS (
-        SELECT e.name, d.name AS dept_name, e.salary,
-          PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY e.salary) OVER (PARTITION BY e.dept_id) AS percentile_75
-        FROM employees e
-        JOIN departments d ON e.dept_id = d.id
+      WITH dept_p75 AS (
+        SELECT dept_id,
+          PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY salary) AS percentile_75
+        FROM employees
+        GROUP BY dept_id
       )
-      SELECT name, dept_name, salary, percentile_75
-      FROM salary_percentiles
-      WHERE salary > percentile_75
-      ORDER BY dept_name, salary DESC
+      SELECT e.name, d.name AS dept_name, e.salary, p.percentile_75
+      FROM employees e
+      JOIN departments d ON e.dept_id = d.id
+      JOIN dept_p75 p ON e.dept_id = p.dept_id
+      WHERE e.salary > p.percentile_75
+      ORDER BY dept_name, e.salary DESC
     ) user_result
     EXCEPT
     SELECT 1 FROM (
       VALUES 
-        ('Alice Chen', 'Engineering', 150000, 135000),
-        ('David Wilson', 'Sales', 110000, 105000)
+        ('Alice Chen', 'Engineering', 150000, 140000),
+        ('Grace Lee', 'Marketing', 100000, 96250),
+        ('David Wilson', 'Sales', 110000, 107500)
     ) expected(name, dept_name, salary, percentile_75)
   ) THEN 1 ELSE 0 END AS correct;
 orderMatters: true

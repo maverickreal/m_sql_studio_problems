@@ -1,0 +1,28 @@
+id: "01a08dde-83d2-7fa5-88c4-8b24e38aa73e"
+slug: "investment-gain-or-loss"
+title: "Investment gain or loss"
+description: |
+  Fund name and current_value - principal.
+difficulty: easy
+mode: read
+category: finance
+datasets:
+  - finance
+sampleInput:
+  - "accounts(id, holder_name, acct_type, balance, opened_date)"
+  - "transactions(id, account_id, txn_date, amount, txn_type, description)"
+  - "budgets(id, department, fiscal_year, allocated, spent)"
+  - "invoices(id, vendor, amount, issued_date, due_date, paid_date, status)"
+  - "investments(id, fund_name, principal, current_value, start_date)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: finance
+solutionSql: |
+  SELECT fund_name, current_value - principal AS pnl FROM investments ORDER BY pnl DESC, fund_name
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

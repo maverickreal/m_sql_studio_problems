@@ -1,0 +1,29 @@
+id: "01a08dde-8421-7e35-84e3-743b72f63914"
+slug: "unenrolled-students"
+title: "Students with no enrollments"
+description: |
+  Student names who appear in students but not enrollments.
+difficulty: easy
+mode: read
+category: education
+datasets:
+  - education
+sampleInput:
+  - "students(id, name, cohort_year, major)"
+  - "courses(id, code, title, credits, dept)"
+  - "enrollments(student_id, course_id, term)"
+  - "grades(student_id, course_id, term, letter, points)"
+  - "instructors(id, name, dept)"
+  - "course_instructors(course_id, instructor_id, term)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: education
+solutionSql: |
+  SELECT s.name FROM students s LEFT JOIN enrollments e ON e.student_id = s.id WHERE e.student_id IS NULL ORDER BY s.name
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

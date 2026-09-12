@@ -1,0 +1,28 @@
+id: "01a08dde-845c-7145-8fcd-4f8a82a0ced5"
+slug: "reduce-mouse-stock"
+title: "Reduce wireless mouse stock by 5"
+description: |
+  Subtract 5 from stock for Wireless Mouse.
+difficulty: easy
+mode: write
+category: commerce
+datasets:
+  - commerce
+sampleInput:
+  - "customers(id, name, email, city, signup_date)"
+  - "products(id, name, category, price, stock)"
+  - "orders(id, customer_id, order_date, status)"
+  - "order_items(id, order_id, product_id, quantity, unit_price)"
+  - "payments(id, order_id, amount, method, paid_at)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: commerce
+solutionSql: |
+  UPDATE products SET stock = stock - 5 WHERE name = 'Wireless Mouse'
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

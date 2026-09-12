@@ -1,0 +1,48 @@
+id: "01a09454-b250-796a-8d69-f31992bbf8ec"
+slug: "top-customer-by-spending"
+title: "Top Customer by Spending"
+description: |
+  Find the customer who has spent the most in total across all their completed orders.
+difficulty: medium
+mode: read
+category: commerce
+datasets:
+  - commerce
+sampleInput:
+  - "customers(id, name)"
+  - "orders(id, customer_id, status)"
+  - "order_items(id, order_id, product_id, quantity, unit_price)"
+sampleOutput: "customer_name | total_spent\n---|---\nAlice Johnson | 1509.97"
+initSql: |
+  -- Dataset: commerce (see datasets/commerce/ for schema + seed)
+solutionSql: |
+  SELECT c.name AS customer_name, SUM(oi.quantity * oi.unit_price) AS total_spent
+  FROM customers c
+  JOIN orders o ON c.id = o.customer_id
+  JOIN order_items oi ON o.id = oi.order_id
+  WHERE o.status = 'completed'
+  GROUP BY c.name
+  ORDER BY total_spent DESC
+  LIMIT 1;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT c.name AS customer_name, SUM(oi.quantity * oi.unit_price) AS total_spent
+      FROM customers c
+      JOIN orders o ON c.id = o.customer_id
+      JOIN order_items oi ON o.id = oi.order_id
+      WHERE o.status = 'completed'
+      GROUP BY c.name
+      ORDER BY total_spent DESC
+      LIMIT 1
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES ('Alice Johnson', 1509.97)
+    ) expected(customer_name, total_spent)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

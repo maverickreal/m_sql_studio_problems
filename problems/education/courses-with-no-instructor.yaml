@@ -1,0 +1,29 @@
+id: "01a08dde-840f-7b1c-86e8-d2d90b2f6c58"
+slug: "courses-with-no-instructor"
+title: "Courses missing an instructor in 2024F"
+description: |
+  Course codes with no course_instructors row for 2024F.
+difficulty: medium
+mode: read
+category: education
+datasets:
+  - education
+sampleInput:
+  - "students(id, name, cohort_year, major)"
+  - "courses(id, code, title, credits, dept)"
+  - "enrollments(student_id, course_id, term)"
+  - "grades(student_id, course_id, term, letter, points)"
+  - "instructors(id, name, dept)"
+  - "course_instructors(course_id, instructor_id, term)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: education
+solutionSql: |
+  SELECT c.code FROM courses c WHERE NOT EXISTS (SELECT 1 FROM course_instructors ci WHERE ci.course_id = c.id AND ci.term = '2024F') ORDER BY c.code
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

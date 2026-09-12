@@ -1,0 +1,28 @@
+id: "01a08dde-83c5-7add-8dd1-324d43654905"
+slug: "deposit-totals-by-account"
+title: "Deposit totals by account"
+description: |
+  Holder name and SUM of deposit amounts.
+difficulty: easy
+mode: read
+category: finance
+datasets:
+  - finance
+sampleInput:
+  - "accounts(id, holder_name, acct_type, balance, opened_date)"
+  - "transactions(id, account_id, txn_date, amount, txn_type, description)"
+  - "budgets(id, department, fiscal_year, allocated, spent)"
+  - "invoices(id, vendor, amount, issued_date, due_date, paid_date, status)"
+  - "investments(id, fund_name, principal, current_value, start_date)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: finance
+solutionSql: |
+  SELECT a.holder_name, COALESCE(SUM(t.amount) FILTER (WHERE t.txn_type = 'deposit'), 0) AS deposits FROM accounts a LEFT JOIN transactions t ON t.account_id = a.id GROUP BY a.holder_name ORDER BY deposits DESC, a.holder_name
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

@@ -1,0 +1,29 @@
+id: "01a08dde-841e-7e7e-83db-7c3e1e9ef3ce"
+slug: "dr-shaw-courses"
+title: "Courses taught by Dr. Shaw"
+description: |
+  Course codes Dr. Shaw has taught (any term).
+difficulty: easy
+mode: read
+category: education
+datasets:
+  - education
+sampleInput:
+  - "students(id, name, cohort_year, major)"
+  - "courses(id, code, title, credits, dept)"
+  - "enrollments(student_id, course_id, term)"
+  - "grades(student_id, course_id, term, letter, points)"
+  - "instructors(id, name, dept)"
+  - "course_instructors(course_id, instructor_id, term)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: education
+solutionSql: |
+  SELECT DISTINCT c.code FROM courses c JOIN course_instructors ci ON ci.course_id = c.id JOIN instructors i ON i.id = ci.instructor_id WHERE i.name = 'Dr. Shaw' ORDER BY c.code
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

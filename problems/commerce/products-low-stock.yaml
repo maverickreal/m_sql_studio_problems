@@ -1,0 +1,38 @@
+id: "01a09454-b24d-7f48-bb37-f89aead5f172"
+slug: "products-low-stock"
+title: "Products Low in Stock"
+description: |
+  Find products where stock is less than 50 units. Show product name, category, and stock.
+difficulty: easy
+mode: read
+category: commerce
+datasets:
+  - commerce
+sampleInput:
+  - "products(id, name, category, price, stock)"
+sampleOutput: "name | category | stock\n---|---|---\nDesk Chair | Furniture | 30\nMonitor 27\" | Electronics | 40"
+initSql: |
+  -- Dataset: commerce (see datasets/commerce/ for schema + seed)
+solutionSql: |
+  SELECT name, category, stock
+  FROM products
+  WHERE stock < 50
+  ORDER BY stock;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT name, category, stock
+      FROM products
+      WHERE stock < 50
+      ORDER BY stock
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES ('Desk Chair', 'Furniture', 30), ('Monitor 27"', 'Electronics', 40)
+    ) expected(name, category, stock)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

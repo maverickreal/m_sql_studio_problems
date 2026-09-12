@@ -1,0 +1,28 @@
+id: "01a08dde-83d7-7081-8c3d-741d44321a7a"
+slug: "payroll-deposits"
+title: "Payroll deposits"
+description: |
+  Account holder names who received a Payroll deposit.
+difficulty: easy
+mode: read
+category: finance
+datasets:
+  - finance
+sampleInput:
+  - "accounts(id, holder_name, acct_type, balance, opened_date)"
+  - "transactions(id, account_id, txn_date, amount, txn_type, description)"
+  - "budgets(id, department, fiscal_year, allocated, spent)"
+  - "invoices(id, vendor, amount, issued_date, due_date, paid_date, status)"
+  - "investments(id, fund_name, principal, current_value, start_date)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: finance
+solutionSql: |
+  SELECT DISTINCT a.holder_name FROM accounts a JOIN transactions t ON t.account_id = a.id WHERE t.description = 'Payroll' ORDER BY a.holder_name
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

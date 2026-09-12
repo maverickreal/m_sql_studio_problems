@@ -1,0 +1,41 @@
+id: "01a09454-b26e-7a81-98e5-b091ec32bc5b"
+slug: "shipments-in-transit"
+title: "Shipments In Transit"
+description: |
+  List all shipments that are currently in transit, showing origin and destination warehouse names.
+difficulty: easy
+mode: read
+category: ops-logistics
+datasets:
+  - ops-logistics
+sampleInput:
+  - "warehouses(id, name, city, capacity)"
+  - "shipments(id, origin_warehouse_id, dest_warehouse_id, ship_date, delivery_date, status, weight_kg)"
+sampleOutput: "shipment_id | origin | destination | weight_kg\n---|---|---|---\n4 | North Hub | South Depot | 1200.00\n6 | South Depot | West Station | 890.00"
+initSql: |
+  -- Dataset: ops-logistics (see datasets/ops-logistics/ for schema + seed)
+solutionSql: |
+  SELECT s.id AS shipment_id, w1.name AS origin, w2.name AS destination, s.weight_kg
+  FROM shipments s
+  JOIN warehouses w1 ON s.origin_warehouse_id = w1.id
+  JOIN warehouses w2 ON s.dest_warehouse_id = w2.id
+  WHERE s.status = 'in_transit';
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT s.id AS shipment_id, w1.name AS origin, w2.name AS destination, s.weight_kg
+      FROM shipments s
+      JOIN warehouses w1 ON s.origin_warehouse_id = w1.id
+      JOIN warehouses w2 ON s.dest_warehouse_id = w2.id
+      WHERE s.status = 'in_transit'
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES (4, 'North Hub', 'South Depot', 1200.00), (6, 'South Depot', 'West Station', 890.00)
+    ) expected(shipment_id, origin, destination, weight_kg)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: false
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

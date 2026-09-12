@@ -1,0 +1,28 @@
+id: "01a08dde-844e-7ed9-81bb-918a299b5bd5"
+slug: "quantity-sold-by-product"
+title: "Quantity sold by product"
+description: |
+  Product name and SUM(quantity) from order_items.
+difficulty: medium
+mode: read
+category: commerce
+datasets:
+  - commerce
+sampleInput:
+  - "customers(id, name, email, city, signup_date)"
+  - "products(id, name, category, price, stock)"
+  - "orders(id, customer_id, order_date, status)"
+  - "order_items(id, order_id, product_id, quantity, unit_price)"
+  - "payments(id, order_id, amount, method, paid_at)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: commerce
+solutionSql: |
+  SELECT p.name, SUM(oi.quantity) AS qty FROM products p JOIN order_items oi ON oi.product_id = p.id GROUP BY p.name ORDER BY qty DESC, p.name
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

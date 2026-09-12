@@ -1,0 +1,36 @@
+id: "01a09454-b26c-75a1-a26a-9f3da4f5f481"
+slug: "delivery-time-analysis"
+title: "Delivery Time Analysis"
+description: |
+  Compute the average delivery time in days for delivered shipments.
+difficulty: medium
+mode: read
+category: ops-logistics
+datasets:
+  - ops-logistics
+sampleInput:
+  - "shipments(id, origin_warehouse_id, dest_warehouse_id, ship_date, delivery_date, status, weight_kg)"
+sampleOutput: "avg_delivery_days\n---\n7.00"
+initSql: |
+  -- Dataset: ops-logistics (see datasets/ops-logistics/ for schema + seed)
+solutionSql: |
+  SELECT ROUND(AVG(delivery_date - ship_date), 2) AS avg_delivery_days
+  FROM shipments
+  WHERE status = 'delivered' AND delivery_date IS NOT NULL;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT ROUND(AVG(delivery_date - ship_date), 2) AS avg_delivery_days
+      FROM shipments
+      WHERE status = 'delivered' AND delivery_date IS NOT NULL
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES (7.00)
+    ) expected(avg_delivery_days)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: false
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

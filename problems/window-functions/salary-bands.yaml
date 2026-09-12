@@ -14,20 +14,19 @@ sampleOutput: "salary_band | employee_count\n---|---\nLow | 3\nMedium | 3\nHigh 
 initSql: |
   -- Dataset: hr (see datasets/hr/ for schema + seed)
 solutionSql: |
-  SELECT 
-    CASE 
-      WHEN salary < 100000 THEN 'Low'
-      WHEN salary <= 120000 THEN 'Medium'
-      ELSE 'High'
-    END AS salary_band,
-    COUNT(*) AS employee_count
-  FROM employees
-  GROUP BY 
-    CASE 
-      WHEN salary < 100000 THEN 'Low'
-      WHEN salary <= 120000 THEN 'Medium'
-      ELSE 'High'
-    END
+  WITH bands AS (
+    SELECT 
+      CASE 
+        WHEN salary < 100000 THEN 'Low'
+        WHEN salary <= 120000 THEN 'Medium'
+        ELSE 'High'
+      END AS salary_band,
+      COUNT(*) AS employee_count
+    FROM employees
+    GROUP BY 1
+  )
+  SELECT salary_band, employee_count
+  FROM bands
   ORDER BY 
     CASE salary_band 
       WHEN 'Low' THEN 1 
@@ -37,20 +36,19 @@ solutionSql: |
 validationSql: |
   SELECT CASE WHEN NOT EXISTS (
     SELECT 1 FROM (
-      SELECT 
-        CASE 
-          WHEN salary < 100000 THEN 'Low'
-          WHEN salary <= 120000 THEN 'Medium'
-          ELSE 'High'
-        END AS salary_band,
-        COUNT(*) AS employee_count
-      FROM employees
-      GROUP BY 
-        CASE 
-          WHEN salary < 100000 THEN 'Low'
-          WHEN salary <= 120000 THEN 'Medium'
-          ELSE 'High'
-        END
+      WITH bands AS (
+        SELECT 
+          CASE 
+            WHEN salary < 100000 THEN 'Low'
+            WHEN salary <= 120000 THEN 'Medium'
+            ELSE 'High'
+          END AS salary_band,
+          COUNT(*) AS employee_count
+        FROM employees
+        GROUP BY 1
+      )
+      SELECT salary_band, employee_count
+      FROM bands
       ORDER BY 
         CASE salary_band 
           WHEN 'Low' THEN 1 

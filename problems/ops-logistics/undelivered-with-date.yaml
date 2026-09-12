@@ -1,0 +1,28 @@
+id: "01a08dde-8476-720d-82c1-4a40301f52a4"
+slug: "undelivered-with-date"
+title: "Undelivered shipments that have a delivery_date"
+description: |
+  Ids with delivery_date IS NOT NULL and status <> delivered — or none.
+difficulty: medium
+mode: read
+category: ops-logistics
+datasets:
+  - ops-logistics
+sampleInput:
+  - "warehouses(id, name, city, capacity)"
+  - "shipments(id, origin_warehouse_id, dest_warehouse_id, ship_date, delivery_date, status, weight_kg)"
+  - "inventory(id, warehouse_id, product_name, quantity, reorder_level)"
+  - "carriers(id, name, type)"
+  - "shipment_carriers(shipment_id, carrier_id, cost)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: ops-logistics
+solutionSql: |
+  SELECT id FROM shipments WHERE delivery_date IS NOT NULL AND status <> 'delivered' ORDER BY id
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

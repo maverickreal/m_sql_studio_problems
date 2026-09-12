@@ -1,0 +1,8 @@
+East Center	North Hub	600.0000000000000000
+East Center	West Station	320.0000000000000000
+North Hub	East Center	500.0000000000000000
+North Hub	South Depot	1200.0000000000000000
+South Depot	North Hub	750.5000000000000000
+South Depot	West Station	890.0000000000000000
+West Station	East Center	450.2500000000000000
+West Station	South Depot	200.0000000000000000

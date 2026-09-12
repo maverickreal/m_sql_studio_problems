@@ -1,0 +1,28 @@
+id: "01a08dde-83ea-7ec4-8f5e-7ea9226b65a4"
+slug: "running-deposits-alice"
+title: "Running deposits for Alice"
+description: |
+  Alice Johnson deposit dates and running sum of deposit amounts.
+difficulty: hard
+mode: read
+category: finance
+datasets:
+  - finance
+sampleInput:
+  - "accounts(id, holder_name, acct_type, balance, opened_date)"
+  - "transactions(id, account_id, txn_date, amount, txn_type, description)"
+  - "budgets(id, department, fiscal_year, allocated, spent)"
+  - "invoices(id, vendor, amount, issued_date, due_date, paid_date, status)"
+  - "investments(id, fund_name, principal, current_value, start_date)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: finance
+solutionSql: |
+  SELECT t.txn_date, SUM(t.amount) OVER (ORDER BY t.txn_date, t.id) AS running_deposits FROM transactions t JOIN accounts a ON a.id = t.account_id WHERE a.holder_name = 'Alice Johnson' AND t.txn_type = 'deposit' ORDER BY t.txn_date
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

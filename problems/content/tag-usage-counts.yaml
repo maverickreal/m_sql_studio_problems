@@ -1,0 +1,29 @@
+id: "01a08dde-83a1-70ff-8da8-bf30d47c76ac"
+slug: "tag-usage-counts"
+title: "How often each tag is used"
+description: |
+  Tag name and number of articles it is attached to.
+difficulty: easy
+mode: read
+category: content
+datasets:
+  - content
+sampleInput:
+  - "authors(id, name, email, joined_date)"
+  - "articles(id, title, author_id, category, published_date, word_count, status)"
+  - "comments(id, article_id, commenter_name, body, posted_date)"
+  - "tags(id, name)"
+  - "article_tags(article_id, tag_id)"
+  - "likes(id, article_id, user_name, liked_date)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: content
+solutionSql: |
+  SELECT t.name AS tag_name, COUNT(at.article_id) AS article_count FROM tags t LEFT JOIN article_tags at ON at.tag_id = t.id GROUP BY t.name ORDER BY article_count DESC, tag_name
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

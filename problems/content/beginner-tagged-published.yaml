@@ -1,0 +1,29 @@
+id: "01a08dde-83b3-7dd8-8607-ff70493c6888"
+slug: "beginner-tagged-published"
+title: "Published beginner-tagged articles"
+description: |
+  Published titles that have the beginner tag.
+difficulty: easy
+mode: read
+category: content
+datasets:
+  - content
+sampleInput:
+  - "authors(id, name, email, joined_date)"
+  - "articles(id, title, author_id, category, published_date, word_count, status)"
+  - "comments(id, article_id, commenter_name, body, posted_date)"
+  - "tags(id, name)"
+  - "article_tags(article_id, tag_id)"
+  - "likes(id, article_id, user_name, liked_date)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: content
+solutionSql: |
+  SELECT ar.title FROM articles ar JOIN article_tags at ON at.article_id = ar.id JOIN tags t ON t.id = at.tag_id WHERE t.name = 'beginner' AND ar.status = 'published' ORDER BY ar.title
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

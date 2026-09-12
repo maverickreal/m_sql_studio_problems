@@ -1,0 +1,29 @@
+id: "01a08dde-8424-784b-864a-ff2fa8d54822"
+slug: "term-enrollment-totals"
+title: "Enrollment totals by term"
+description: |
+  Term and COUNT(*) of enrollment rows.
+difficulty: easy
+mode: read
+category: education
+datasets:
+  - education
+sampleInput:
+  - "students(id, name, cohort_year, major)"
+  - "courses(id, code, title, credits, dept)"
+  - "enrollments(student_id, course_id, term)"
+  - "grades(student_id, course_id, term, letter, points)"
+  - "instructors(id, name, dept)"
+  - "course_instructors(course_id, instructor_id, term)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: education
+solutionSql: |
+  SELECT term, COUNT(*) AS n FROM enrollments GROUP BY term ORDER BY term
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

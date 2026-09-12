@@ -1,0 +1,28 @@
+id: "01a08dde-8459-7497-8d5c-538b68ac783f"
+slug: "rank-customers-by-order-count"
+title: "Rank customers by order count"
+description: |
+  Customer name and RANK by number of orders.
+difficulty: medium
+mode: read
+category: commerce
+datasets:
+  - commerce
+sampleInput:
+  - "customers(id, name, email, city, signup_date)"
+  - "products(id, name, category, price, stock)"
+  - "orders(id, customer_id, order_date, status)"
+  - "order_items(id, order_id, product_id, quantity, unit_price)"
+  - "payments(id, order_id, amount, method, paid_at)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: commerce
+solutionSql: |
+  SELECT c.name, RANK() OVER (ORDER BY COUNT(o.id) DESC) AS order_rank FROM customers c LEFT JOIN orders o ON o.customer_id = c.id GROUP BY c.name ORDER BY order_rank, c.name
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

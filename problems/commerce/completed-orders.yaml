@@ -1,0 +1,28 @@
+id: "01a08dde-8439-79c2-8c07-ac69fe37fa02"
+slug: "completed-orders"
+title: "Completed orders"
+description: |
+  Order ids with status completed.
+difficulty: easy
+mode: read
+category: commerce
+datasets:
+  - commerce
+sampleInput:
+  - "customers(id, name, email, city, signup_date)"
+  - "products(id, name, category, price, stock)"
+  - "orders(id, customer_id, order_date, status)"
+  - "order_items(id, order_id, product_id, quantity, unit_price)"
+  - "payments(id, order_id, amount, method, paid_at)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: commerce
+solutionSql: |
+  SELECT id FROM orders WHERE status = 'completed' ORDER BY id
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

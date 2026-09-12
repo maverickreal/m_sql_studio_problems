@@ -1,0 +1,29 @@
+id: "01a08dde-8419-729f-8873-ddd5e4bf3c2c"
+slug: "avg-points-by-course"
+title: "Average grade points by course"
+description: |
+  Course code and AVG(points).
+difficulty: easy
+mode: read
+category: education
+datasets:
+  - education
+sampleInput:
+  - "students(id, name, cohort_year, major)"
+  - "courses(id, code, title, credits, dept)"
+  - "enrollments(student_id, course_id, term)"
+  - "grades(student_id, course_id, term, letter, points)"
+  - "instructors(id, name, dept)"
+  - "course_instructors(course_id, instructor_id, term)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: education
+solutionSql: |
+  SELECT c.code, AVG(g.points) AS avg_points FROM courses c JOIN grades g ON g.course_id = c.id GROUP BY c.code ORDER BY avg_points DESC, c.code
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

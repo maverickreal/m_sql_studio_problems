@@ -1,0 +1,38 @@
+id: "01a09454-b24c-7a76-a294-1fbeeb7eeb15"
+slug: "payment-method-revenue"
+title: "Payment Method Revenue"
+description: |
+  Compute total revenue grouped by payment method.
+difficulty: easy
+mode: read
+category: commerce
+datasets:
+  - commerce
+sampleInput:
+  - "payments(id, order_id, amount, method, paid_at)"
+sampleOutput: "method | total_revenue\n---|---\ncredit_card | 3509.95\ndebit_card | 649.98\npaypal | 319.97"
+initSql: |
+  -- Dataset: commerce (see datasets/commerce/ for schema + seed)
+solutionSql: |
+  SELECT method, SUM(amount) AS total_revenue
+  FROM payments
+  GROUP BY method
+  ORDER BY total_revenue DESC;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT method, SUM(amount) AS total_revenue
+      FROM payments
+      GROUP BY method
+      ORDER BY total_revenue DESC
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES ('credit_card', 3509.95), ('debit_card', 649.98), ('paypal', 319.97)
+    ) expected(method, total_revenue)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

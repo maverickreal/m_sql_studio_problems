@@ -1,8 +1,2 @@
-psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789023115416_le4gv0.sql:76: ERROR:  relation "employees" already exists
-psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789023115416_le4gv0.sql:86: ERROR:  duplicate key value violates unique constraint "employees_pkey"
-DETAIL:  Key (id)=(1) already exists.
-psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789023115416_le4gv0.sql:93: ERROR:  relation "employee_projects" already exists
-psql:/var/folders/ch/w1y06drj2pg92gnvybjt9jfh0000gn/T/gold_1789023115416_le4gv0.sql:102: ERROR:  duplicate key value violates unique constraint "employee_projects_pkey"
-DETAIL:  Key (employee_id, project_id)=(1, 1) already exists.
 Frank Brown
 Iris Anderson

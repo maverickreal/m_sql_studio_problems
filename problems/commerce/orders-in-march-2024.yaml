@@ -1,0 +1,28 @@
+id: "01a08dde-8449-7472-8137-d4904f870dbd"
+slug: "orders-in-march-2024"
+title: "Orders in March 2024"
+description: |
+  Order ids placed in March 2024.
+difficulty: easy
+mode: read
+category: commerce
+datasets:
+  - commerce
+sampleInput:
+  - "customers(id, name, email, city, signup_date)"
+  - "products(id, name, category, price, stock)"
+  - "orders(id, customer_id, order_date, status)"
+  - "order_items(id, order_id, product_id, quantity, unit_price)"
+  - "payments(id, order_id, amount, method, paid_at)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: commerce
+solutionSql: |
+  SELECT id FROM orders WHERE order_date >= DATE '2024-03-01' AND order_date < DATE '2024-04-01' ORDER BY id
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

@@ -11,7 +11,7 @@ datasets:
 sampleInput:
   - "projects(id, name, dept_id, budget)"
   - "employee_projects(employee_id, project_id, role)"
-sampleOutput: "project_name | developer_count\n---|---\nData Pipeline | 2\nMobile App | 1\nCRM Integration | 1\nBrand Campaign | 1"
+sampleOutput: "project_name | developer_count\n---|---\nData Pipeline | 2"
 initSql: |
   -- Dataset: hr (see datasets/hr/ for schema + seed)
 solutionSql: |
@@ -21,11 +21,12 @@ solutionSql: |
   JOIN employee_projects ep ON p.id = ep.project_id
   GROUP BY p.id, p.name
   HAVING COUNT(*) FILTER (WHERE ep.role = 'Lead') > 0
+     AND COUNT(*) FILTER (WHERE ep.role = 'Developer') > 0
      AND COUNT(*) FILTER (WHERE ep.role = 'Developer') >= ALL (
-       SELECT COUNT(*) FILTER (WHERE ep2.role = r)
+       SELECT COUNT(*)
        FROM employee_projects ep2
        WHERE ep2.project_id = p.id
-         AND ep2.role != 'Lead'
+         AND ep2.role != 'Developer'
        GROUP BY ep2.role
      )
   ORDER BY developer_count DESC, project_name;
@@ -38,11 +39,12 @@ validationSql: |
       JOIN employee_projects ep ON p.id = ep.project_id
       GROUP BY p.id, p.name
       HAVING COUNT(*) FILTER (WHERE ep.role = 'Lead') > 0
+         AND COUNT(*) FILTER (WHERE ep.role = 'Developer') > 0
          AND COUNT(*) FILTER (WHERE ep.role = 'Developer') >= ALL (
-           SELECT COUNT(*) FILTER (WHERE ep2.role = r)
+           SELECT COUNT(*)
            FROM employee_projects ep2
            WHERE ep2.project_id = p.id
-             AND ep2.role != 'Lead'
+             AND ep2.role != 'Developer'
            GROUP BY ep2.role
          )
       ORDER BY developer_count DESC, project_name
@@ -50,10 +52,7 @@ validationSql: |
     EXCEPT
     SELECT 1 FROM (
       VALUES 
-        ('Data Pipeline', 2),
-        ('Mobile App', 1),
-        ('CRM Integration', 1),
-        ('Brand Campaign', 1)
+        ('Data Pipeline', 2)
     ) expected(project_name, developer_count)
   ) THEN 1 ELSE 0 END AS correct;
 orderMatters: true

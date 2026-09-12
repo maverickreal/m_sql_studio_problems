@@ -1,0 +1,41 @@
+id: "01a09454-b26b-783b-a8cf-46fffd3946ff"
+slug: "carrier-cost-total"
+title: "Carrier Cost Total"
+description: |
+  Compute total shipping cost per carrier, ordered by cost descending.
+difficulty: easy
+mode: read
+category: ops-logistics
+datasets:
+  - ops-logistics
+sampleInput:
+  - "carriers(id, name, type)"
+  - "shipment_carriers(shipment_id, carrier_id, cost)"
+sampleOutput: "carrier_name | total_cost\n---|---\nFastFreight | 1330.00\nAirExpress | 970.00\nQuickDelivery | 320.00"
+initSql: |
+  -- Dataset: ops-logistics (see datasets/ops-logistics/ for schema + seed)
+solutionSql: |
+  SELECT c.name AS carrier_name, SUM(sc.cost) AS total_cost
+  FROM carriers c
+  JOIN shipment_carriers sc ON c.id = sc.carrier_id
+  GROUP BY c.name
+  ORDER BY total_cost DESC;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT c.name AS carrier_name, SUM(sc.cost) AS total_cost
+      FROM carriers c
+      JOIN shipment_carriers sc ON c.id = sc.carrier_id
+      GROUP BY c.name
+      ORDER BY total_cost DESC
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES ('FastFreight', 1330.00), ('AirExpress', 970.00), ('QuickDelivery', 320.00)
+    ) expected(carrier_name, total_cost)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

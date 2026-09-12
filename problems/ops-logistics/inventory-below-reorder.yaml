@@ -1,0 +1,41 @@
+id: "01a09454-b26d-7598-863e-cca49f74d8da"
+slug: "inventory-below-reorder"
+title: "Inventory Below Reorder Level"
+description: |
+  Find inventory items where quantity is at or below the reorder level.
+difficulty: easy
+mode: read
+category: ops-logistics
+datasets:
+  - ops-logistics
+sampleInput:
+  - "inventory(id, warehouse_id, product_name, quantity, reorder_level)"
+  - "warehouses(id, name)"
+sampleOutput: "warehouse_name | product_name | quantity | reorder_level\n---|---|---|---\nEast Center | Monitor 27\" | 90 | 25\nWest Station | Blender | 120 | 40"
+initSql: |
+  -- Dataset: ops-logistics (see datasets/ops-logistics/ for schema + seed)
+solutionSql: |
+  SELECT w.name AS warehouse_name, i.product_name, i.quantity, i.reorder_level
+  FROM inventory i
+  JOIN warehouses w ON i.warehouse_id = w.id
+  WHERE i.quantity <= i.reorder_level
+  ORDER BY w.name, i.product_name;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT w.name AS warehouse_name, i.product_name, i.quantity, i.reorder_level
+      FROM inventory i
+      JOIN warehouses w ON i.warehouse_id = w.id
+      WHERE i.quantity <= i.reorder_level
+      ORDER BY w.name, i.product_name
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES ('East Center', 'Monitor 27"', 90, 25), ('West Station', 'Blender', 120, 40)
+    ) expected(warehouse_name, product_name, quantity, reorder_level)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

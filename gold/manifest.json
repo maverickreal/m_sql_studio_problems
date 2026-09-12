@@ -1,381 +1,1077 @@
 {
-  "generatedAt": "2026-09-10T06:51:57.532Z",
-  "total": 62,
-  "passed": 62,
+  "generatedAt": "2026-09-12T06:37:50.397Z",
+  "total": 178,
+  "passed": 178,
   "failed": 0,
   "skipped": 0,
   "results": [
     {
       "slug": "employees-longest-hire-streak",
       "category": "advanced-joins",
-      "lines": 13,
-      "file": "gold/advanced-joins__employees-longest-hire-streak.gold"
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/advanced-joins__employees-longest-hire-streak.gold"
     },
     {
       "slug": "employees-multiple-projects",
       "category": "advanced-joins",
       "lines": 1,
-      "file": "gold/advanced-joins__employees-multiple-projects.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/advanced-joins__employees-multiple-projects.gold"
     },
     {
       "slug": "employees-same-salary",
       "category": "advanced-joins",
       "lines": 0,
-      "file": "gold/advanced-joins__employees-same-salary.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/advanced-joins__employees-same-salary.gold"
     },
     {
       "slug": "lead-vs-developer-roles",
       "category": "advanced-joins",
-      "lines": 3,
-      "file": "gold/advanced-joins__lead-vs-developer-roles.gold"
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/advanced-joins__lead-vs-developer-roles.gold"
     },
     {
       "slug": "managers-with-multiple-direct-reports-same-dept",
       "category": "advanced-joins",
-      "lines": 12,
-      "file": "gold/advanced-joins__managers-with-multiple-direct-reports-same-dept.gold"
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/advanced-joins__managers-with-multiple-direct-reports-same-dept.gold"
     },
     {
       "slug": "projects-with-dept-mismatch",
       "category": "advanced-joins",
-      "lines": 12,
-      "file": "gold/advanced-joins__projects-with-dept-mismatch.gold"
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/advanced-joins__projects-with-dept-mismatch.gold"
     },
     {
       "slug": "avg-salary-by-role",
       "category": "aggregation",
       "lines": 2,
-      "file": "gold/aggregation__avg-salary-by-role.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__avg-salary-by-role.gold"
     },
     {
       "slug": "dept-budget-utilization",
       "category": "aggregation",
-      "lines": 16,
-      "file": "gold/aggregation__dept-budget-utilization.gold"
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__dept-budget-utilization.gold"
     },
     {
       "slug": "dept-employee-count",
       "category": "aggregation",
       "lines": 4,
-      "file": "gold/aggregation__dept-employee-count.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__dept-employee-count.gold"
     },
     {
       "slug": "dept-salary-stats",
       "category": "aggregation",
       "lines": 4,
-      "file": "gold/aggregation__dept-salary-stats.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__dept-salary-stats.gold"
     },
     {
       "slug": "dept-with-3plus-employees",
       "category": "aggregation",
       "lines": 2,
-      "file": "gold/aggregation__dept-with-3plus-employees.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__dept-with-3plus-employees.gold"
     },
     {
       "slug": "high-value-projects",
       "category": "aggregation",
       "lines": 2,
-      "file": "gold/aggregation__high-value-projects.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__high-value-projects.gold"
     },
     {
       "slug": "manager-with-most-reports",
       "category": "aggregation",
       "lines": 2,
-      "file": "gold/aggregation__manager-with-most-reports.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__manager-with-most-reports.gold"
     },
     {
       "slug": "median-salary-per-role",
       "category": "aggregation",
-      "lines": 16,
-      "file": "gold/aggregation__median-salary-per-role.gold"
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__median-salary-per-role.gold"
     },
     {
       "slug": "project-budget-summary",
       "category": "aggregation",
       "lines": 4,
-      "file": "gold/aggregation__project-budget-summary.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__project-budget-summary.gold"
     },
     {
       "slug": "project-role-distribution",
       "category": "aggregation",
       "lines": 4,
-      "file": "gold/aggregation__project-role-distribution.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__project-role-distribution.gold"
     },
     {
       "slug": "projects-by-dept-budget",
       "category": "aggregation",
       "lines": 3,
-      "file": "gold/aggregation__projects-by-dept-budget.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__projects-by-dept-budget.gold"
     },
     {
       "slug": "recent-hires-by-dept",
       "category": "aggregation",
       "lines": 3,
-      "file": "gold/aggregation__recent-hires-by-dept.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__recent-hires-by-dept.gold"
     },
     {
       "slug": "salary-spread-by-dept",
       "category": "aggregation",
-      "lines": 16,
-      "file": "gold/aggregation__salary-spread-by-dept.gold"
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__salary-spread-by-dept.gold"
     },
     {
       "slug": "top-earners-by-dept",
       "category": "aggregation",
       "lines": 4,
-      "file": "gold/aggregation__top-earners-by-dept.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/aggregation__top-earners-by-dept.gold"
     },
     {
       "slug": "department-comparison-dashboard",
       "category": "analytics-reporting",
-      "lines": 16,
-      "file": "gold/analytics-reporting__department-comparison-dashboard.gold"
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/analytics-reporting__department-comparison-dashboard.gold"
     },
     {
       "slug": "quarterly-hiring-report",
       "category": "analytics-reporting",
-      "lines": 16,
-      "file": "gold/analytics-reporting__quarterly-hiring-report.gold"
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/analytics-reporting__quarterly-hiring-report.gold"
+    },
+    {
+      "slug": "avg-order-value-by-customer",
+      "category": "commerce",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__avg-order-value-by-customer.gold"
+    },
+    {
+      "slug": "avg-unit-price-by-order",
+      "category": "commerce",
+      "lines": 8,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__avg-unit-price-by-order.gold"
+    },
+    {
+      "slug": "completed-orders",
+      "category": "commerce",
+      "lines": 5,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__completed-orders.gold"
+    },
+    {
+      "slug": "customer-order-count",
+      "category": "commerce",
+      "lines": 5,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__customer-order-count.gold"
+    },
+    {
+      "slug": "customers-in-new-york",
+      "category": "commerce",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__customers-in-new-york.gold"
+    },
+    {
+      "slug": "customers-signed-up-q1-2023",
+      "category": "commerce",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__customers-signed-up-q1-2023.gold"
+    },
+    {
+      "slug": "customers-who-ordered-electronics",
+      "category": "commerce",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__customers-who-ordered-electronics.gold"
+    },
+    {
+      "slug": "customers-with-no-orders",
+      "category": "commerce",
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__customers-with-no-orders.gold"
+    },
+    {
+      "slug": "electronics-products",
+      "category": "commerce",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__electronics-products.gold"
+    },
+    {
+      "slug": "items-per-order",
+      "category": "commerce",
+      "lines": 8,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__items-per-order.gold"
+    },
+    {
+      "slug": "monthly-order-trend",
+      "category": "commerce",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__monthly-order-trend.gold"
+    },
+    {
+      "slug": "most-expensive-product",
+      "category": "commerce",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__most-expensive-product.gold"
+    },
+    {
+      "slug": "order-status-breakdown",
+      "category": "commerce",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__order-status-breakdown.gold"
+    },
+    {
+      "slug": "orders-in-march-2024",
+      "category": "commerce",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__orders-in-march-2024.gold"
+    },
+    {
+      "slug": "orders-with-more-than-one-item",
+      "category": "commerce",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__orders-with-more-than-one-item.gold"
+    },
+    {
+      "slug": "payment-method-revenue",
+      "category": "commerce",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__payment-method-revenue.gold"
+    },
+    {
+      "slug": "products-low-stock",
+      "category": "commerce",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__products-low-stock.gold"
+    },
+    {
+      "slug": "products-under-50",
+      "category": "commerce",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__products-under-50.gold"
+    },
+    {
+      "slug": "quantity-sold-by-product",
+      "category": "commerce",
+      "lines": 8,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__quantity-sold-by-product.gold"
+    },
+    {
+      "slug": "rank-customers-by-order-count",
+      "category": "commerce",
+      "lines": 5,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__rank-customers-by-order-count.gold"
+    },
+    {
+      "slug": "reduce-mouse-stock",
+      "category": "commerce",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__reduce-mouse-stock.gold"
+    },
+    {
+      "slug": "revenue-by-category",
+      "category": "commerce",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__revenue-by-category.gold"
+    },
+    {
+      "slug": "shipped-not-completed",
+      "category": "commerce",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__shipped-not-completed.gold"
+    },
+    {
+      "slug": "stock-value-by-category",
+      "category": "commerce",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__stock-value-by-category.gold"
+    },
+    {
+      "slug": "top-customer-by-spending",
+      "category": "commerce",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__top-customer-by-spending.gold"
+    },
+    {
+      "slug": "top-products-by-revenue",
+      "category": "commerce",
+      "lines": 8,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/commerce__top-products-by-revenue.gold"
+    },
+    {
+      "slug": "articles-published-in-march-2024",
+      "category": "content",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__articles-published-in-march-2024.gold"
+    },
+    {
+      "slug": "articles-with-sql-and-advanced-tags",
+      "category": "content",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__articles-with-sql-and-advanced-tags.gold"
+    },
+    {
+      "slug": "articles-without-comments",
+      "category": "content",
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__articles-without-comments.gold"
+    },
+    {
+      "slug": "author-first-published-date",
+      "category": "content",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__author-first-published-date.gold"
+    },
+    {
+      "slug": "authors-above-avg-word-count",
+      "category": "content",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__authors-above-avg-word-count.gold"
+    },
+    {
+      "slug": "authors-joined-in-2023",
+      "category": "content",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__authors-joined-in-2023.gold"
+    },
+    {
+      "slug": "authors-with-no-published-work",
+      "category": "content",
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__authors-with-no-published-work.gold"
+    },
+    {
+      "slug": "avg-word-count-by-category",
+      "category": "content",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__avg-word-count-by-category.gold"
+    },
+    {
+      "slug": "beginner-tagged-published",
+      "category": "content",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__beginner-tagged-published.gold"
+    },
+    {
+      "slug": "category-share-of-published",
+      "category": "content",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__category-share-of-published.gold"
+    },
+    {
+      "slug": "commenters-on-multiple-articles",
+      "category": "content",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__commenters-on-multiple-articles.gold"
+    },
+    {
+      "slug": "comments-after-article-publish",
+      "category": "content",
+      "lines": 8,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__comments-after-article-publish.gold"
+    },
+    {
+      "slug": "draft-articles",
+      "category": "content",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__draft-articles.gold"
+    },
+    {
+      "slug": "insert-draft-note",
+      "category": "content",
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__insert-draft-note.gold"
+    },
+    {
+      "slug": "like-count-by-article",
+      "category": "content",
+      "lines": 9,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__like-count-by-article.gold"
+    },
+    {
+      "slug": "longest-published-article",
+      "category": "content",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__longest-published-article.gold"
+    },
+    {
+      "slug": "most-commented-article",
+      "category": "content",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__most-commented-article.gold"
+    },
+    {
+      "slug": "performance-category-authors",
+      "category": "content",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__performance-category-authors.gold"
+    },
+    {
+      "slug": "published-articles-per-author",
+      "category": "content",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__published-articles-per-author.gold"
+    },
+    {
+      "slug": "rank-articles-by-likes",
+      "category": "content",
+      "lines": 9,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__rank-articles-by-likes.gold"
+    },
+    {
+      "slug": "running-word-count-by-publish-date",
+      "category": "content",
+      "lines": 7,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__running-word-count-by-publish-date.gold"
+    },
+    {
+      "slug": "second-most-liked-article",
+      "category": "content",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__second-most-liked-article.gold"
+    },
+    {
+      "slug": "tag-usage-counts",
+      "category": "content",
+      "lines": 6,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__tag-usage-counts.gold"
+    },
+    {
+      "slug": "tutorial-tag-articles",
+      "category": "content",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__tutorial-tag-articles.gold"
+    },
+    {
+      "slug": "unpublished-with-likes",
+      "category": "content",
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/content__unpublished-with-likes.gold"
     },
     {
       "slug": "budget-waterfall",
       "category": "cte-expressions",
-      "lines": 16,
-      "file": "gold/cte-expressions__budget-waterfall.gold"
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/cte-expressions__budget-waterfall.gold"
     },
     {
       "slug": "org-depth-per-employee",
       "category": "cte-expressions",
-      "lines": 21,
-      "file": "gold/cte-expressions__org-depth-per-employee.gold"
+      "lines": 9,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/cte-expressions__org-depth-per-employee.gold"
     },
     {
       "slug": "team-roster-with-levels",
       "category": "cte-expressions",
-      "lines": 15,
-      "file": "gold/cte-expressions__team-roster-with-levels.gold"
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/cte-expressions__team-roster-with-levels.gold"
     },
     {
       "slug": "hire-anniversary-this-month",
       "category": "date-arithmetic",
-      "lines": 14,
-      "file": "gold/date-arithmetic__hire-anniversary-this-month.gold"
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/date-arithmetic__hire-anniversary-this-month.gold"
     },
     {
       "slug": "longest-hire-gap",
       "category": "date-arithmetic",
-      "lines": 15,
-      "file": "gold/date-arithmetic__longest-hire-gap.gold"
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/date-arithmetic__longest-hire-gap.gold"
     },
     {
       "slug": "tenure-categories",
       "category": "date-arithmetic",
-      "lines": 21,
-      "file": "gold/date-arithmetic__tenure-categories.gold"
+      "lines": 9,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/date-arithmetic__tenure-categories.gold"
+    },
+    {
+      "slug": "a-letter-grades",
+      "category": "education",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__a-letter-grades.gold"
+    },
+    {
+      "slug": "avg-points-by-course",
+      "category": "education",
+      "lines": 5,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__avg-points-by-course.gold"
+    },
+    {
+      "slug": "cohort-2024-students",
+      "category": "education",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__cohort-2024-students.gold"
+    },
+    {
+      "slug": "courses-in-math-dept",
+      "category": "education",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__courses-in-math-dept.gold"
+    },
+    {
+      "slug": "courses-with-no-instructor",
+      "category": "education",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__courses-with-no-instructor.gold"
+    },
+    {
+      "slug": "credit-load-2024f",
+      "category": "education",
+      "lines": 6,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__credit-load-2024f.gold"
+    },
+    {
+      "slug": "cs-dept-instructors",
+      "category": "education",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__cs-dept-instructors.gold"
+    },
+    {
+      "slug": "cs-majors",
+      "category": "education",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__cs-majors.gold"
+    },
+    {
+      "slug": "cs101-roster",
+      "category": "education",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__cs101-roster.gold"
+    },
+    {
+      "slug": "dr-shaw-courses",
+      "category": "education",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__dr-shaw-courses.gold"
+    },
+    {
+      "slug": "enroll-theo-cs101",
+      "category": "education",
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__enroll-theo-cs101.gold"
+    },
+    {
+      "slug": "enrollment-count-by-course",
+      "category": "education",
+      "lines": 6,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__enrollment-count-by-course.gold"
+    },
+    {
+      "slug": "four-credit-courses",
+      "category": "education",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__four-credit-courses.gold"
+    },
+    {
+      "slug": "gpa-by-student",
+      "category": "education",
+      "lines": 5,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__gpa-by-student.gold"
+    },
+    {
+      "slug": "instructors-teaching-2025s",
+      "category": "education",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__instructors-teaching-2025s.gold"
+    },
+    {
+      "slug": "math-majors-in-math-courses",
+      "category": "education",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__math-majors-in-math-courses.gold"
+    },
+    {
+      "slug": "physics-majors",
+      "category": "education",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__physics-majors.gold"
+    },
+    {
+      "slug": "rank-students-by-gpa",
+      "category": "education",
+      "lines": 5,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__rank-students-by-gpa.gold"
+    },
+    {
+      "slug": "students-above-3-5-gpa",
+      "category": "education",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__students-above-3-5-gpa.gold"
+    },
+    {
+      "slug": "students-with-no-grades",
+      "category": "education",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__students-with-no-grades.gold"
+    },
+    {
+      "slug": "term-enrollment-totals",
+      "category": "education",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__term-enrollment-totals.gold"
+    },
+    {
+      "slug": "unenrolled-students",
+      "category": "education",
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/education__unenrolled-students.gold"
+    },
+    {
+      "slug": "account-balances-desc",
+      "category": "finance",
+      "lines": 5,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__account-balances-desc.gold"
+    },
+    {
+      "slug": "accounts-opened-after-march-2022",
+      "category": "finance",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__accounts-opened-after-march-2022.gold"
+    },
+    {
+      "slug": "avg-invoice-by-status",
+      "category": "finance",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__avg-invoice-by-status.gold"
+    },
+    {
+      "slug": "budget-remaining",
+      "category": "finance",
+      "lines": 5,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__budget-remaining.gold"
+    },
+    {
+      "slug": "budget-spend-rank",
+      "category": "finance",
+      "lines": 5,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__budget-spend-rank.gold"
+    },
+    {
+      "slug": "checking-account-holders",
+      "category": "finance",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__checking-account-holders.gold"
+    },
+    {
+      "slug": "departments-over-80-percent-spent",
+      "category": "finance",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__departments-over-80-percent-spent.gold"
+    },
+    {
+      "slug": "deposit-totals-by-account",
+      "category": "finance",
+      "lines": 5,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__deposit-totals-by-account.gold"
+    },
+    {
+      "slug": "investment-gain-or-loss",
+      "category": "finance",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__investment-gain-or-loss.gold"
+    },
+    {
+      "slug": "invoices-paid-before-due",
+      "category": "finance",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__invoices-paid-before-due.gold"
+    },
+    {
+      "slug": "largest-withdrawal",
+      "category": "finance",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__largest-withdrawal.gold"
+    },
+    {
+      "slug": "losing-funds",
+      "category": "finance",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__losing-funds.gold"
+    },
+    {
+      "slug": "mark-invoice-paid",
+      "category": "finance",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__mark-invoice-paid.gold"
+    },
+    {
+      "slug": "net-flow-by-account",
+      "category": "finance",
+      "lines": 5,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__net-flow-by-account.gold"
+    },
+    {
+      "slug": "overdue-invoices",
+      "category": "finance",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__overdue-invoices.gold"
+    },
+    {
+      "slug": "payroll-deposits",
+      "category": "finance",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__payroll-deposits.gold"
+    },
+    {
+      "slug": "positive-pnl-funds",
+      "category": "finance",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__positive-pnl-funds.gold"
+    },
+    {
+      "slug": "running-deposits-alice",
+      "category": "finance",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__running-deposits-alice.gold"
+    },
+    {
+      "slug": "savings-vs-checking-count",
+      "category": "finance",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__savings-vs-checking-count.gold"
+    },
+    {
+      "slug": "txn-count-by-type",
+      "category": "finance",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__txn-count-by-type.gold"
+    },
+    {
+      "slug": "unpaid-invoice-total",
+      "category": "finance",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__unpaid-invoice-total.gold"
+    },
+    {
+      "slug": "vendors-with-multiple-invoices",
+      "category": "finance",
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/finance__vendors-with-multiple-invoices.gold"
     },
     {
       "slug": "employees-above-avg-salary",
       "category": "joins",
-      "lines": 7,
-      "file": "gold/joins__employees-above-avg-salary.gold"
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/joins__employees-above-avg-salary.gold"
     },
     {
       "slug": "employees-sharing-manager",
       "category": "joins",
       "lines": 2,
-      "file": "gold/joins__employees-sharing-manager.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/joins__employees-sharing-manager.gold"
     },
     {
       "slug": "employees-with-no-project",
       "category": "joins",
-      "lines": 8,
-      "file": "gold/joins__employees-with-no-project.gold"
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/joins__employees-with-no-project.gold"
     },
     {
       "slug": "projects-with-dept-and-lead",
       "category": "joins",
       "lines": 4,
-      "file": "gold/joins__projects-with-dept-and-lead.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/joins__projects-with-dept-and-lead.gold"
+    },
+    {
+      "slug": "avg-cost-by-carrier",
+      "category": "ops-logistics",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__avg-cost-by-carrier.gold"
+    },
+    {
+      "slug": "avg-shipment-weight-by-route",
+      "category": "ops-logistics",
+      "lines": 8,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__avg-shipment-weight-by-route.gold"
+    },
+    {
+      "slug": "carrier-cost-total",
+      "category": "ops-logistics",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__carrier-cost-total.gold"
+    },
+    {
+      "slug": "carrier-types",
+      "category": "ops-logistics",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__carrier-types.gold"
+    },
+    {
+      "slug": "delivery-time-analysis",
+      "category": "ops-logistics",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__delivery-time-analysis.gold"
+    },
+    {
+      "slug": "heaviest-shipment",
+      "category": "ops-logistics",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__heaviest-shipment.gold"
+    },
+    {
+      "slug": "in-transit-shipments",
+      "category": "ops-logistics",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__in-transit-shipments.gold"
+    },
+    {
+      "slug": "inventory-below-reorder",
+      "category": "ops-logistics",
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__inventory-below-reorder.gold"
+    },
+    {
+      "slug": "inventory-by-warehouse",
+      "category": "ops-logistics",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__inventory-by-warehouse.gold"
+    },
+    {
+      "slug": "mark-shipment-delivered",
+      "category": "ops-logistics",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__mark-shipment-delivered.gold"
+    },
+    {
+      "slug": "multi-carrier-shipments",
+      "category": "ops-logistics",
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__multi-carrier-shipments.gold"
+    },
+    {
+      "slug": "products-needing-reorder",
+      "category": "ops-logistics",
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__products-needing-reorder.gold"
+    },
+    {
+      "slug": "rank-warehouses-by-capacity",
+      "category": "ops-logistics",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__rank-warehouses-by-capacity.gold"
+    },
+    {
+      "slug": "shipments-in-march",
+      "category": "ops-logistics",
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__shipments-in-march.gold"
+    },
+    {
+      "slug": "shipments-in-transit",
+      "category": "ops-logistics",
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__shipments-in-transit.gold"
+    },
+    {
+      "slug": "shipments-same-city-forbidden",
+      "category": "ops-logistics",
+      "lines": 8,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__shipments-same-city-forbidden.gold"
+    },
+    {
+      "slug": "total-carrier-spend",
+      "category": "ops-logistics",
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__total-carrier-spend.gold"
+    },
+    {
+      "slug": "undelivered-with-date",
+      "category": "ops-logistics",
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__undelivered-with-date.gold"
+    },
+    {
+      "slug": "warehouse-net-outbound",
+      "category": "ops-logistics",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__warehouse-net-outbound.gold"
+    },
+    {
+      "slug": "warehouse-shipment-volume",
+      "category": "ops-logistics",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__warehouse-shipment-volume.gold"
+    },
+    {
+      "slug": "warehouses-by-capacity",
+      "category": "ops-logistics",
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/ops-logistics__warehouses-by-capacity.gold"
     },
     {
       "slug": "role-spread-matrix",
       "category": "pivoting",
-      "lines": 16,
-      "file": "gold/pivoting__role-spread-matrix.gold"
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/pivoting__role-spread-matrix.gold"
     },
     {
       "slug": "salary-band-distribution",
       "category": "pivoting",
-      "lines": 15,
-      "file": "gold/pivoting__salary-band-distribution.gold"
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/pivoting__salary-band-distribution.gold"
     },
     {
       "slug": "consecutive-salary-increases",
       "category": "query-patterns",
-      "lines": 15,
-      "file": "gold/query-patterns__consecutive-salary-increases.gold"
+      "lines": 3,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/query-patterns__consecutive-salary-increases.gold"
     },
     {
       "slug": "salary-change-point-detection",
       "category": "query-patterns",
-      "lines": 20,
-      "file": "gold/query-patterns__salary-change-point-detection.gold"
+      "lines": 8,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/query-patterns__salary-change-point-detection.gold"
     },
     {
       "slug": "manager-hierarchy",
       "category": "recursive",
       "lines": 9,
-      "file": "gold/recursive__manager-hierarchy.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/recursive__manager-hierarchy.gold"
     },
     {
       "slug": "project-dependency-chain",
       "category": "recursive",
       "lines": 0,
-      "file": "gold/recursive__project-dependency-chain.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/recursive__project-dependency-chain.gold"
     },
     {
       "slug": "hire-order-by-dept",
       "category": "self-joins",
-      "lines": 21,
-      "file": "gold/self-joins__hire-order-by-dept.gold"
+      "lines": 9,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/self-joins__hire-order-by-dept.gold"
     },
     {
       "slug": "pairs-under-same-manager",
       "category": "self-joins",
-      "lines": 14,
-      "file": "gold/self-joins__pairs-under-same-manager.gold"
+      "lines": 2,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/self-joins__pairs-under-same-manager.gold"
     },
     {
       "slug": "salary-gap-between-peers",
       "category": "self-joins",
-      "lines": 19,
-      "file": "gold/self-joins__salary-gap-between-peers.gold"
+      "lines": 7,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/self-joins__salary-gap-between-peers.gold"
     },
     {
       "slug": "employees-in-all-projects",
       "category": "set-analysis",
-      "lines": 12,
-      "file": "gold/set-analysis__employees-in-all-projects.gold"
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/set-analysis__employees-in-all-projects.gold"
     },
     {
       "slug": "mutually-exclusive-project-pairs",
       "category": "set-analysis",
-      "lines": 17,
-      "file": "gold/set-analysis__mutually-exclusive-project-pairs.gold"
+      "lines": 5,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/set-analysis__mutually-exclusive-project-pairs.gold"
     },
     {
       "slug": "project-coverage-by-dept",
       "category": "set-analysis",
-      "lines": 12,
-      "file": "gold/set-analysis__project-coverage-by-dept.gold"
+      "lines": 0,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/set-analysis__project-coverage-by-dept.gold"
     },
     {
       "slug": "eng-and-sales-union",
       "category": "set-operations",
       "lines": 6,
-      "file": "gold/set-operations__eng-and-sales-union.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/set-operations__eng-and-sales-union.gold"
     },
     {
       "slug": "projects-no-employees",
       "category": "set-operations",
       "lines": 0,
-      "file": "gold/set-operations__projects-no-employees.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/set-operations__projects-no-employees.gold"
     },
     {
       "slug": "extract-name-components",
       "category": "string-operations",
-      "lines": 21,
-      "file": "gold/string-operations__extract-name-components.gold"
+      "lines": 9,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/string-operations__extract-name-components.gold"
     },
     {
       "slug": "name-acronym-generator",
       "category": "string-operations",
-      "lines": 16,
-      "file": "gold/string-operations__name-acronym-generator.gold"
+      "lines": 4,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/string-operations__name-acronym-generator.gold"
     },
     {
       "slug": "name-pattern-search",
       "category": "string-operations",
-      "lines": 13,
-      "file": "gold/string-operations__name-pattern-search.gold"
+      "lines": 1,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/string-operations__name-pattern-search.gold"
     },
     {
       "slug": "dept-avg-vs-overall-avg",
       "category": "subqueries",
       "lines": 1,
-      "file": "gold/subqueries__dept-avg-vs-overall-avg.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/subqueries__dept-avg-vs-overall-avg.gold"
     },
     {
       "slug": "employees-before-2020",
       "category": "subqueries",
       "lines": 1,
-      "file": "gold/subqueries__employees-before-2020.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/subqueries__employees-before-2020.gold"
     },
     {
       "slug": "employees-hired-recently",
       "category": "subqueries",
       "lines": 6,
-      "file": "gold/subqueries__employees-hired-recently.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/subqueries__employees-hired-recently.gold"
     },
     {
       "slug": "eng-only-projects",
       "category": "subqueries",
       "lines": 2,
-      "file": "gold/subqueries__eng-only-projects.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/subqueries__eng-only-projects.gold"
     },
     {
       "slug": "managers-and-reports",
       "category": "subqueries",
       "lines": 11,
-      "file": "gold/subqueries__managers-and-reports.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/subqueries__managers-and-reports.gold"
     },
     {
       "slug": "salary-momentum-over-hires",
       "category": "window-analytics",
-      "lines": 21,
-      "file": "gold/window-analytics__salary-momentum-over-hires.gold"
+      "lines": 9,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/window-analytics__salary-momentum-over-hires.gold"
     },
     {
       "slug": "salary-percentile-rank",
       "category": "window-analytics",
-      "lines": 21,
-      "file": "gold/window-analytics__salary-percentile-rank.gold"
+      "lines": 9,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/window-analytics__salary-percentile-rank.gold"
     },
     {
       "slug": "top-2-earners-per-dept",
       "category": "window-analytics",
-      "lines": 19,
-      "file": "gold/window-analytics__top-2-earners-per-dept.gold"
+      "lines": 7,
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/window-analytics__top-2-earners-per-dept.gold"
     },
     {
       "slug": "dept-highest-budget-project",
       "category": "window-functions",
       "lines": 3,
-      "file": "gold/window-functions__dept-highest-budget-project.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/window-functions__dept-highest-budget-project.gold"
     },
     {
       "slug": "running-salary-total",
       "category": "window-functions",
       "lines": 9,
-      "file": "gold/window-functions__running-salary-total.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/window-functions__running-salary-total.gold"
     },
     {
       "slug": "salary-bands",
       "category": "window-functions",
       "lines": 3,
-      "file": "gold/window-functions__salary-bands.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/window-functions__salary-bands.gold"
     },
     {
       "slug": "salary-percentile",
       "category": "window-functions",
       "lines": 3,
-      "file": "gold/window-functions__salary-percentile.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/window-functions__salary-percentile.gold"
     },
     {
       "slug": "salary-rank-by-dept",
       "category": "window-functions",
       "lines": 9,
-      "file": "gold/window-functions__salary-rank-by-dept.gold"
+      "file": "/Users/maverick/.hermes/profiles/swe/workspace/msql-studio/m_sql_studio_problems/gold/window-functions__salary-rank-by-dept.gold"
     }
   ]
 }

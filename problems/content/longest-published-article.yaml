@@ -1,0 +1,29 @@
+id: "01a08dde-8399-7844-88fe-2bac8abd8fdd"
+slug: "longest-published-article"
+title: "Longest published article"
+description: |
+  Title of the published article with the highest word_count.
+difficulty: easy
+mode: read
+category: content
+datasets:
+  - content
+sampleInput:
+  - "authors(id, name, email, joined_date)"
+  - "articles(id, title, author_id, category, published_date, word_count, status)"
+  - "comments(id, article_id, commenter_name, body, posted_date)"
+  - "tags(id, name)"
+  - "article_tags(article_id, tag_id)"
+  - "likes(id, article_id, user_name, liked_date)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: content
+solutionSql: |
+  SELECT title FROM articles WHERE status = 'published' ORDER BY word_count DESC, title LIMIT 1
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

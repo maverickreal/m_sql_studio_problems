@@ -1,0 +1,40 @@
+id: "01a09454-b24a-7677-b5e3-efc2e4aa2882"
+slug: "monthly-order-trend"
+title: "Monthly Order Trend"
+description: |
+  Count orders placed each month in 2024, ordered by month.
+difficulty: medium
+mode: read
+category: commerce
+datasets:
+  - commerce
+sampleInput:
+  - "orders(id, customer_id, order_date, status)"
+sampleOutput: "month | order_count\n---|---\n2024-01 | 2\n2024-02 | 1\n2024-03 | 3\n2024-04 | 2"
+initSql: |
+  -- Dataset: commerce (see datasets/commerce/ for schema + seed)
+solutionSql: |
+  SELECT TO_CHAR(order_date, 'YYYY-MM') AS month, COUNT(*) AS order_count
+  FROM orders
+  WHERE order_date >= '2024-01-01' AND order_date < '2025-01-01'
+  GROUP BY TO_CHAR(order_date, 'YYYY-MM')
+  ORDER BY month;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT TO_CHAR(order_date, 'YYYY-MM') AS month, COUNT(*) AS order_count
+      FROM orders
+      WHERE order_date >= '2024-01-01' AND order_date < '2025-01-01'
+      GROUP BY TO_CHAR(order_date, 'YYYY-MM')
+      ORDER BY month
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES ('2024-01', 2), ('2024-02', 1), ('2024-03', 3), ('2024-04', 2)
+    ) expected(month, order_count)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

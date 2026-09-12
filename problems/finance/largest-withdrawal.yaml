@@ -1,0 +1,28 @@
+id: "01a08dde-83e4-7978-8315-1de0314573e7"
+slug: "largest-withdrawal"
+title: "Largest withdrawal"
+description: |
+  Description of the most negative withdrawal amount.
+difficulty: easy
+mode: read
+category: finance
+datasets:
+  - finance
+sampleInput:
+  - "accounts(id, holder_name, acct_type, balance, opened_date)"
+  - "transactions(id, account_id, txn_date, amount, txn_type, description)"
+  - "budgets(id, department, fiscal_year, allocated, spent)"
+  - "invoices(id, vendor, amount, issued_date, due_date, paid_date, status)"
+  - "investments(id, fund_name, principal, current_value, start_date)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: finance
+solutionSql: |
+  SELECT description FROM transactions WHERE txn_type = 'withdrawal' ORDER BY amount ASC, description LIMIT 1
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

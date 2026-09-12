@@ -1,0 +1,28 @@
+id: "01a08dde-8436-78a6-8158-270db9505ab6"
+slug: "products-under-50"
+title: "Products under 50"
+description: |
+  Product names priced below 50.
+difficulty: easy
+mode: read
+category: commerce
+datasets:
+  - commerce
+sampleInput:
+  - "customers(id, name, email, city, signup_date)"
+  - "products(id, name, category, price, stock)"
+  - "orders(id, customer_id, order_date, status)"
+  - "order_items(id, order_id, product_id, quantity, unit_price)"
+  - "payments(id, order_id, amount, method, paid_at)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: commerce
+solutionSql: |
+  SELECT name FROM products WHERE price < 50 ORDER BY name
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

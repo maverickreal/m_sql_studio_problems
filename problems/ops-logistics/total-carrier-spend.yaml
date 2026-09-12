@@ -1,0 +1,28 @@
+id: "01a08dde-847c-7c84-8328-a7280ea94a4e"
+slug: "total-carrier-spend"
+title: "Total carrier spend"
+description: |
+  SUM of shipment_carriers.cost.
+difficulty: easy
+mode: read
+category: ops-logistics
+datasets:
+  - ops-logistics
+sampleInput:
+  - "warehouses(id, name, city, capacity)"
+  - "shipments(id, origin_warehouse_id, dest_warehouse_id, ship_date, delivery_date, status, weight_kg)"
+  - "inventory(id, warehouse_id, product_name, quantity, reorder_level)"
+  - "carriers(id, name, type)"
+  - "shipment_carriers(shipment_id, carrier_id, cost)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: ops-logistics
+solutionSql: |
+  SELECT SUM(cost) AS total_cost FROM shipment_carriers
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

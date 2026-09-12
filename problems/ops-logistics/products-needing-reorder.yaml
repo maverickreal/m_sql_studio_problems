@@ -1,0 +1,28 @@
+id: "01a08dde-8467-739d-8368-6eaecd0e0017"
+slug: "products-needing-reorder"
+title: "Products at or below reorder level"
+description: |
+  product_name where quantity <= reorder_level.
+difficulty: easy
+mode: read
+category: ops-logistics
+datasets:
+  - ops-logistics
+sampleInput:
+  - "warehouses(id, name, city, capacity)"
+  - "shipments(id, origin_warehouse_id, dest_warehouse_id, ship_date, delivery_date, status, weight_kg)"
+  - "inventory(id, warehouse_id, product_name, quantity, reorder_level)"
+  - "carriers(id, name, type)"
+  - "shipment_carriers(shipment_id, carrier_id, cost)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: ops-logistics
+solutionSql: |
+  SELECT product_name FROM inventory WHERE quantity <= reorder_level ORDER BY product_name
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

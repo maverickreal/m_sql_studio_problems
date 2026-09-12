@@ -1,0 +1,28 @@
+id: "01a08dde-843e-7399-8592-948c2274881f"
+slug: "items-per-order"
+title: "Line items per order"
+description: |
+  order_id and COUNT of order_items.
+difficulty: easy
+mode: read
+category: commerce
+datasets:
+  - commerce
+sampleInput:
+  - "customers(id, name, email, city, signup_date)"
+  - "products(id, name, category, price, stock)"
+  - "orders(id, customer_id, order_date, status)"
+  - "order_items(id, order_id, product_id, quantity, unit_price)"
+  - "payments(id, order_id, amount, method, paid_at)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: commerce
+solutionSql: |
+  SELECT order_id, COUNT(*) AS n FROM order_items GROUP BY order_id ORDER BY order_id
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

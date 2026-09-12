@@ -1,0 +1,29 @@
+id: "01a08dde-83b8-7242-89fc-718f7e412435"
+slug: "category-share-of-published"
+title: "Share of published articles by category"
+description: |
+  Category and count of published articles.
+difficulty: easy
+mode: read
+category: content
+datasets:
+  - content
+sampleInput:
+  - "authors(id, name, email, joined_date)"
+  - "articles(id, title, author_id, category, published_date, word_count, status)"
+  - "comments(id, article_id, commenter_name, body, posted_date)"
+  - "tags(id, name)"
+  - "article_tags(article_id, tag_id)"
+  - "likes(id, article_id, user_name, liked_date)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: content
+solutionSql: |
+  SELECT category, COUNT(*) AS n FROM articles WHERE status = 'published' GROUP BY category ORDER BY n DESC, category
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

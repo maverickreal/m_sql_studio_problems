@@ -34,7 +34,7 @@ function buildPsqlArgs() {
     host: url.hostname,
     port: url.port || '5432',
     user: url.username,
-    password: url.password || '',
+    password: decodeURIComponent(url.password || ''),
     db: url.pathname.slice(1)
   };
 }
@@ -127,14 +127,15 @@ async function main() {
 
     try {
       // Build full SQL: datasets + initSql + solutionSql
-      let datasetSql = '';
-      if (doc.datasets && Array.isArray(doc.datasets)) {
+      let fullInitSql = '';
+      if (doc.datasets && Array.isArray(doc.datasets) && doc.datasets.length > 0) {
         for (const dsSlug of doc.datasets) {
-          datasetSql += loadDatasetSql(dsSlug);
+          fullInitSql += loadDatasetSql(dsSlug) + '\n';
         }
+        if (doc.overlaySql) fullInitSql += doc.overlaySql + '\n';
+      } else if (doc.initSql) {
+        fullInitSql = doc.initSql + '\n';
       }
-      
-      const fullInitSql = datasetSql + (doc.initSql || '');
       
       const sqlContent = `
 SET client_min_messages TO WARNING;
@@ -148,7 +149,7 @@ ${doc.solutionSql};
       fs.writeFileSync(tmpFile, sqlContent);
 
       const output = execSync(
-        `psql -h ${args.host} -p ${args.port} -U ${args.user} -d ${args.db} -f ${tmpFile} -t -A -F "\t" 2>&1`,
+        `psql -h ${args.host} -p ${args.port} -U ${args.user} -d ${args.db} -v ON_ERROR_STOP=1 -f ${tmpFile} -t -A -F "\t" 2>&1`,
         { env, encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 }
       );
 

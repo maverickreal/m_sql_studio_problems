@@ -1,0 +1,29 @@
+id: "01a08dde-8416-7d52-8117-8ddd67d83c63"
+slug: "math-majors-in-math-courses"
+title: "Math majors in Math courses"
+description: |
+  Math majors enrolled in a Math dept course.
+difficulty: medium
+mode: read
+category: education
+datasets:
+  - education
+sampleInput:
+  - "students(id, name, cohort_year, major)"
+  - "courses(id, code, title, credits, dept)"
+  - "enrollments(student_id, course_id, term)"
+  - "grades(student_id, course_id, term, letter, points)"
+  - "instructors(id, name, dept)"
+  - "course_instructors(course_id, instructor_id, term)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: education
+solutionSql: |
+  SELECT DISTINCT s.name FROM students s JOIN enrollments e ON e.student_id = s.id JOIN courses c ON c.id = e.course_id WHERE s.major = 'Math' AND c.dept = 'Math' ORDER BY s.name
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

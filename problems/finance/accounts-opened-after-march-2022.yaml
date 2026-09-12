@@ -1,0 +1,28 @@
+id: "01a08dde-83e2-7076-8f6d-5444d5e18f3b"
+slug: "accounts-opened-after-march-2022"
+title: "Accounts opened after March 2022"
+description: |
+  Holders opened on or after 2022-04-01.
+difficulty: easy
+mode: read
+category: finance
+datasets:
+  - finance
+sampleInput:
+  - "accounts(id, holder_name, acct_type, balance, opened_date)"
+  - "transactions(id, account_id, txn_date, amount, txn_type, description)"
+  - "budgets(id, department, fiscal_year, allocated, spent)"
+  - "invoices(id, vendor, amount, issued_date, due_date, paid_date, status)"
+  - "investments(id, fund_name, principal, current_value, start_date)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: finance
+solutionSql: |
+  SELECT holder_name FROM accounts WHERE opened_date >= DATE '2022-04-01' ORDER BY holder_name
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

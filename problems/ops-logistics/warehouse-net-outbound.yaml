@@ -1,0 +1,28 @@
+id: "01a08dde-8474-7d44-8014-26652203093d"
+slug: "warehouse-net-outbound"
+title: "Outbound shipment count by origin warehouse"
+description: |
+  Warehouse name and COUNT of shipments originating there.
+difficulty: medium
+mode: read
+category: ops-logistics
+datasets:
+  - ops-logistics
+sampleInput:
+  - "warehouses(id, name, city, capacity)"
+  - "shipments(id, origin_warehouse_id, dest_warehouse_id, ship_date, delivery_date, status, weight_kg)"
+  - "inventory(id, warehouse_id, product_name, quantity, reorder_level)"
+  - "carriers(id, name, type)"
+  - "shipment_carriers(shipment_id, carrier_id, cost)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: ops-logistics
+solutionSql: |
+  SELECT w.name, COUNT(s.id) AS outbound FROM warehouses w LEFT JOIN shipments s ON s.origin_warehouse_id = w.id GROUP BY w.name ORDER BY outbound DESC, w.name
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

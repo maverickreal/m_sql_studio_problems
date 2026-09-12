@@ -1,0 +1,28 @@
+id: "01a08dde-83ec-7f42-867e-3dee4932245e"
+slug: "vendors-with-multiple-invoices"
+title: "Vendors with more than one invoice"
+description: |
+  Vendor names appearing more than once.
+difficulty: easy
+mode: read
+category: finance
+datasets:
+  - finance
+sampleInput:
+  - "accounts(id, holder_name, acct_type, balance, opened_date)"
+  - "transactions(id, account_id, txn_date, amount, txn_type, description)"
+  - "budgets(id, department, fiscal_year, allocated, spent)"
+  - "invoices(id, vendor, amount, issued_date, due_date, paid_date, status)"
+  - "investments(id, fund_name, principal, current_value, start_date)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: finance
+solutionSql: |
+  SELECT vendor FROM invoices GROUP BY vendor HAVING COUNT(*) > 1 ORDER BY vendor
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

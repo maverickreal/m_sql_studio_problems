@@ -1,0 +1,42 @@
+id: "01a09454-b246-7519-849b-1dc58ea49975"
+slug: "customer-order-count"
+title: "Customer Order Count"
+description: |
+  Count the number of orders placed by each customer. Include customers with zero orders.
+difficulty: easy
+mode: read
+category: commerce
+datasets:
+  - commerce
+sampleInput:
+  - "customers(id, name, email, city, signup_date)"
+  - "orders(id, customer_id, order_date, status)"
+sampleOutput: "customer_name | order_count\n---|---\nAlice Johnson | 2\nBob Smith | 2\nCarol Davis | 2\nDavid Wilson | 1\nEva Martinez | 1"
+initSql: |
+  -- Dataset: commerce (see datasets/commerce/ for schema + seed)
+solutionSql: |
+  SELECT c.name AS customer_name, COUNT(o.id) AS order_count
+  FROM customers c
+  LEFT JOIN orders o ON c.id = o.customer_id
+  GROUP BY c.name
+  ORDER BY order_count DESC, customer_name;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT c.name AS customer_name, COUNT(o.id) AS order_count
+      FROM customers c
+      LEFT JOIN orders o ON c.id = o.customer_id
+      GROUP BY c.name
+      ORDER BY order_count DESC, customer_name
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES ('Alice Johnson', 2), ('Bob Smith', 2), ('Carol Davis', 2),
+             ('David Wilson', 1), ('Eva Martinez', 1)
+    ) expected(customer_name, order_count)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

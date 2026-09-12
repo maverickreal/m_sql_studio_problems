@@ -1,0 +1,29 @@
+id: "01a08dde-83ae-7f34-834e-d9daf1f8a4d8"
+slug: "author-first-published-date"
+title: "Each author's first published date"
+description: |
+  Author name and MIN published_date among published articles.
+difficulty: easy
+mode: read
+category: content
+datasets:
+  - content
+sampleInput:
+  - "authors(id, name, email, joined_date)"
+  - "articles(id, title, author_id, category, published_date, word_count, status)"
+  - "comments(id, article_id, commenter_name, body, posted_date)"
+  - "tags(id, name)"
+  - "article_tags(article_id, tag_id)"
+  - "likes(id, article_id, user_name, liked_date)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: content
+solutionSql: |
+  SELECT a.name, MIN(ar.published_date) AS first_published FROM authors a JOIN articles ar ON ar.author_id = a.id WHERE ar.status = 'published' GROUP BY a.name ORDER BY first_published, a.name
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

@@ -1,0 +1,40 @@
+id: "01a09454-b24a-7451-bec3-83c35d0daef2"
+slug: "order-status-breakdown"
+title: "Order Status Breakdown"
+description: |
+  Count orders by status, showing the percentage of total for each status.
+difficulty: medium
+mode: read
+category: commerce
+datasets:
+  - commerce
+sampleInput:
+  - "orders(id, customer_id, order_date, status)"
+sampleOutput: "status | order_count | percentage\n---|---|---\ncompleted | 4 | 50.00\nshipped | 2 | 25.00\nin_transit | 1 | 12.50\nprocessing | 1 | 12.50"
+initSql: |
+  -- Dataset: commerce (see datasets/commerce/ for schema + seed)
+solutionSql: |
+  SELECT status, COUNT(*) AS order_count,
+    ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM orders), 2) AS percentage
+  FROM orders
+  GROUP BY status
+  ORDER BY order_count DESC;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT status, COUNT(*) AS order_count,
+        ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM orders), 2) AS percentage
+      FROM orders
+      GROUP BY status
+      ORDER BY order_count DESC
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES ('completed', 4, 50.00), ('shipped', 2, 25.00), ('in_transit', 1, 12.50), ('processing', 1, 12.50)
+    ) expected(status, order_count, percentage)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

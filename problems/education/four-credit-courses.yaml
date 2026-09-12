@@ -1,0 +1,29 @@
+id: "01a08dde-8429-7bfc-83d5-d8b6ae8ba781"
+slug: "four-credit-courses"
+title: "Four-credit courses"
+description: |
+  Titles of courses with 4 credits.
+difficulty: easy
+mode: read
+category: education
+datasets:
+  - education
+sampleInput:
+  - "students(id, name, cohort_year, major)"
+  - "courses(id, code, title, credits, dept)"
+  - "enrollments(student_id, course_id, term)"
+  - "grades(student_id, course_id, term, letter, points)"
+  - "instructors(id, name, dept)"
+  - "course_instructors(course_id, instructor_id, term)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: education
+solutionSql: |
+  SELECT title FROM courses WHERE credits = 4 ORDER BY title
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

@@ -1,0 +1,29 @@
+id: "01a08dde-83bb-7c99-8a19-432bafb95f84"
+slug: "second-most-liked-article"
+title: "Second most liked article"
+description: |
+  Title of the article with the second-highest like count (dense ranks).
+difficulty: hard
+mode: read
+category: content
+datasets:
+  - content
+sampleInput:
+  - "authors(id, name, email, joined_date)"
+  - "articles(id, title, author_id, category, published_date, word_count, status)"
+  - "comments(id, article_id, commenter_name, body, posted_date)"
+  - "tags(id, name)"
+  - "article_tags(article_id, tag_id)"
+  - "likes(id, article_id, user_name, liked_date)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: content
+solutionSql: |
+  SELECT title FROM (SELECT ar.title, DENSE_RANK() OVER (ORDER BY COUNT(l.id) DESC) AS r FROM articles ar LEFT JOIN likes l ON l.article_id = ar.id GROUP BY ar.title) x WHERE r = 2 ORDER BY title
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

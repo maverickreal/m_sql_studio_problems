@@ -1,0 +1,43 @@
+id: "01a09454-b251-79bf-93e5-1832bcc34ebc"
+slug: "top-products-by-revenue"
+title: "Top Products by Revenue"
+description: |
+  Compute total revenue for each product. Revenue is the sum of quantity times unit_price from order_items.
+difficulty: easy
+mode: read
+category: commerce
+datasets:
+  - commerce
+sampleInput:
+  - "products(id, name, category, price, stock)"
+  - "order_items(id, order_id, product_id, quantity, unit_price)"
+sampleOutput: "product_name | revenue\n---|---\nLaptop Pro | 2599.98\nMonitor 27\" | 699.98\nDesk Chair | 749.97\nRunning Shoes | 119.99\nCoffee Maker | 89.99\nYoga Mat | 159.96\nBlender | 59.99\nWireless Mouse | 89.97"
+initSql: |
+  -- Dataset: commerce (see datasets/commerce/ for schema + seed)
+solutionSql: |
+  SELECT p.name AS product_name, SUM(oi.quantity * oi.unit_price) AS revenue
+  FROM products p
+  JOIN order_items oi ON p.id = oi.product_id
+  GROUP BY p.name
+  ORDER BY revenue DESC;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT p.name AS product_name, SUM(oi.quantity * oi.unit_price) AS revenue
+      FROM products p
+      JOIN order_items oi ON p.id = oi.product_id
+      GROUP BY p.name
+      ORDER BY revenue DESC
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES ('Laptop Pro', 2599.98), ('Monitor 27"', 699.98), ('Desk Chair', 749.97),
+             ('Running Shoes', 119.99), ('Coffee Maker', 89.99), ('Yoga Mat', 159.96),
+             ('Blender', 59.99), ('Wireless Mouse', 89.97)
+    ) expected(product_name, revenue)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

@@ -1,0 +1,28 @@
+id: "01a08dde-8464-716c-892d-a478d373ed7a"
+slug: "inventory-by-warehouse"
+title: "Inventory units by warehouse"
+description: |
+  Warehouse name and SUM(quantity).
+difficulty: easy
+mode: read
+category: ops-logistics
+datasets:
+  - ops-logistics
+sampleInput:
+  - "warehouses(id, name, city, capacity)"
+  - "shipments(id, origin_warehouse_id, dest_warehouse_id, ship_date, delivery_date, status, weight_kg)"
+  - "inventory(id, warehouse_id, product_name, quantity, reorder_level)"
+  - "carriers(id, name, type)"
+  - "shipment_carriers(shipment_id, carrier_id, cost)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: ops-logistics
+solutionSql: |
+  SELECT w.name, COALESCE(SUM(i.quantity), 0) AS units FROM warehouses w LEFT JOIN inventory i ON i.warehouse_id = w.id GROUP BY w.name ORDER BY units DESC, w.name
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

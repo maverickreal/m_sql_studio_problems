@@ -1,0 +1,41 @@
+id: "01a09454-b24f-7beb-8310-f1c6883b93e6"
+slug: "revenue-by-category"
+title: "Revenue by Category"
+description: |
+  Compute total revenue for each product category.
+difficulty: medium
+mode: read
+category: commerce
+datasets:
+  - commerce
+sampleInput:
+  - "products(id, name, category, price, stock)"
+  - "order_items(id, order_id, product_id, quantity, unit_price)"
+sampleOutput: "category | total_revenue\n---|---\nElectronics | 3389.93\nFurniture | 749.97\nSports | 279.95\nAppliances | 149.98"
+initSql: |
+  -- Dataset: commerce (see datasets/commerce/ for schema + seed)
+solutionSql: |
+  SELECT p.category, SUM(oi.quantity * oi.unit_price) AS total_revenue
+  FROM products p
+  JOIN order_items oi ON p.id = oi.product_id
+  GROUP BY p.category
+  ORDER BY total_revenue DESC;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT p.category, SUM(oi.quantity * oi.unit_price) AS total_revenue
+      FROM products p
+      JOIN order_items oi ON p.id = oi.product_id
+      GROUP BY p.category
+      ORDER BY total_revenue DESC
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES ('Electronics', 3389.93), ('Furniture', 749.97), ('Sports', 279.95), ('Appliances', 149.98)
+    ) expected(category, total_revenue)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

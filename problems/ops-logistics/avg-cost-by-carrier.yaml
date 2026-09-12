@@ -1,0 +1,28 @@
+id: "01a08dde-846c-765f-80db-3b260d6ee57a"
+slug: "avg-cost-by-carrier"
+title: "Average shipment cost by carrier"
+description: |
+  Carrier name and AVG(cost).
+difficulty: medium
+mode: read
+category: ops-logistics
+datasets:
+  - ops-logistics
+sampleInput:
+  - "warehouses(id, name, city, capacity)"
+  - "shipments(id, origin_warehouse_id, dest_warehouse_id, ship_date, delivery_date, status, weight_kg)"
+  - "inventory(id, warehouse_id, product_name, quantity, reorder_level)"
+  - "carriers(id, name, type)"
+  - "shipment_carriers(shipment_id, carrier_id, cost)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: ops-logistics
+solutionSql: |
+  SELECT c.name, AVG(sc.cost) AS avg_cost FROM carriers c JOIN shipment_carriers sc ON sc.carrier_id = c.id GROUP BY c.name ORDER BY avg_cost DESC, c.name
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

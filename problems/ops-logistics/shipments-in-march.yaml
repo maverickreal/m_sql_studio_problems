@@ -1,0 +1,28 @@
+id: "01a08dde-8482-71ed-8e59-e5392bbe30de"
+slug: "shipments-in-march"
+title: "Shipments that left in March 2024"
+description: |
+  Ids with ship_date in March 2024.
+difficulty: easy
+mode: read
+category: ops-logistics
+datasets:
+  - ops-logistics
+sampleInput:
+  - "warehouses(id, name, city, capacity)"
+  - "shipments(id, origin_warehouse_id, dest_warehouse_id, ship_date, delivery_date, status, weight_kg)"
+  - "inventory(id, warehouse_id, product_name, quantity, reorder_level)"
+  - "carriers(id, name, type)"
+  - "shipment_carriers(shipment_id, carrier_id, cost)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: ops-logistics
+solutionSql: |
+  SELECT id FROM shipments WHERE ship_date >= DATE '2024-03-01' AND ship_date < DATE '2024-04-01' ORDER BY id
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

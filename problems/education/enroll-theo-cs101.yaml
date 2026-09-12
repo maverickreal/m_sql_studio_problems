@@ -1,0 +1,29 @@
+id: "01a08dde-8431-7fd6-8ddb-cbec97a5f767"
+slug: "enroll-theo-cs101"
+title: "Enroll Theo in CS101 for 2025S"
+description: |
+  Insert enrollment for student 6 in course 1 term 2025S.
+difficulty: medium
+mode: write
+category: education
+datasets:
+  - education
+sampleInput:
+  - "students(id, name, cohort_year, major)"
+  - "courses(id, code, title, credits, dept)"
+  - "enrollments(student_id, course_id, term)"
+  - "grades(student_id, course_id, term, letter, points)"
+  - "instructors(id, name, dept)"
+  - "course_instructors(course_id, instructor_id, term)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: education
+solutionSql: |
+  INSERT INTO enrollments (student_id, course_id, term) VALUES (6, 1, '2025S')
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

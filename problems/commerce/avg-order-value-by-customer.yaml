@@ -1,0 +1,54 @@
+id: "01a09454-b242-7810-8ff9-bb26a802cc57"
+slug: "avg-order-value-by-customer"
+title: "Average Order Value by Customer"
+description: |
+  Compute the average order value for each customer, considering only completed orders.
+difficulty: medium
+mode: read
+category: commerce
+datasets:
+  - commerce
+sampleInput:
+  - "customers(id, name)"
+  - "orders(id, customer_id, status)"
+  - "order_items(id, order_id, product_id, quantity, unit_price)"
+sampleOutput: "customer_name | avg_order_value\n---|---\nAlice Johnson | 754.99\nBob Smith | 749.98\nEva Martinez | 69.98"
+initSql: |
+  -- Dataset: commerce (see datasets/commerce/ for schema + seed)
+solutionSql: |
+  SELECT c.name AS customer_name, ROUND(AVG(order_total), 2) AS avg_order_value
+  FROM customers c
+  JOIN orders o ON c.id = o.customer_id
+  JOIN (
+    SELECT order_id, SUM(quantity * unit_price) AS order_total
+    FROM order_items
+    GROUP BY order_id
+  ) oi ON o.id = oi.order_id
+  WHERE o.status = 'completed'
+  GROUP BY c.name
+  ORDER BY avg_order_value DESC;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT c.name AS customer_name, ROUND(AVG(order_total), 2) AS avg_order_value
+      FROM customers c
+      JOIN orders o ON c.id = o.customer_id
+      JOIN (
+        SELECT order_id, SUM(quantity * unit_price) AS order_total
+        FROM order_items
+        GROUP BY order_id
+      ) oi ON o.id = oi.order_id
+      WHERE o.status = 'completed'
+      GROUP BY c.name
+      ORDER BY avg_order_value DESC
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES ('Alice Johnson', 754.99), ('Bob Smith', 749.98), ('Eva Martinez', 69.98)
+    ) expected(customer_name, avg_order_value)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

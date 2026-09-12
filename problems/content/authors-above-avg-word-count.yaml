@@ -1,0 +1,29 @@
+id: "01a08dde-83a3-7054-8ace-646468933956"
+slug: "authors-above-avg-word-count"
+title: "Authors above average article length"
+description: |
+  Authors whose average article word_count is above the overall average.
+difficulty: medium
+mode: read
+category: content
+datasets:
+  - content
+sampleInput:
+  - "authors(id, name, email, joined_date)"
+  - "articles(id, title, author_id, category, published_date, word_count, status)"
+  - "comments(id, article_id, commenter_name, body, posted_date)"
+  - "tags(id, name)"
+  - "article_tags(article_id, tag_id)"
+  - "likes(id, article_id, user_name, liked_date)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: content
+solutionSql: |
+  SELECT a.name FROM authors a JOIN articles ar ON ar.author_id = a.id GROUP BY a.name HAVING AVG(ar.word_count) > (SELECT AVG(word_count) FROM articles) ORDER BY a.name
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

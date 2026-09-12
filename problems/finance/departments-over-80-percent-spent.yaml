@@ -1,0 +1,28 @@
+id: "01a08dde-83cf-78d9-8697-03b81957d0fc"
+slug: "departments-over-80-percent-spent"
+title: "Departments over 80 percent spent"
+description: |
+  Departments where spent/allocated > 0.8.
+difficulty: medium
+mode: read
+category: finance
+datasets:
+  - finance
+sampleInput:
+  - "accounts(id, holder_name, acct_type, balance, opened_date)"
+  - "transactions(id, account_id, txn_date, amount, txn_type, description)"
+  - "budgets(id, department, fiscal_year, allocated, spent)"
+  - "invoices(id, vendor, amount, issued_date, due_date, paid_date, status)"
+  - "investments(id, fund_name, principal, current_value, start_date)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: finance
+solutionSql: |
+  SELECT department FROM budgets WHERE spent::numeric / allocated > 0.8 ORDER BY department
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

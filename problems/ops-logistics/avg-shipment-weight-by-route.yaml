@@ -1,0 +1,46 @@
+id: "01a09454-b26a-708a-aeaa-2f3a67e86ad5"
+slug: "avg-shipment-weight-by-route"
+title: "Average Shipment Weight by Route"
+description: |
+  Compute average shipment weight for each origin-destination route.
+difficulty: medium
+mode: read
+category: ops-logistics
+datasets:
+  - ops-logistics
+sampleInput:
+  - "shipments(id, origin_warehouse_id, dest_warehouse_id, weight_kg)"
+  - "warehouses(id, name)"
+sampleOutput: "origin | destination | avg_weight_kg\n---|---|---\nEast Center | West Station | 320.00\nNorth Hub | South Depot | 1200.00\nNorth Hub | East Center | 500.00\nSouth Depot | North Hub | 750.50\nSouth Depot | West Station | 890.00\nWest Station | East Center | 450.25\nWest Station | South Depot | 200.00"
+initSql: |
+  -- Dataset: ops-logistics (see datasets/ops-logistics/ for schema + seed)
+solutionSql: |
+  SELECT w1.name AS origin, w2.name AS destination, AVG(s.weight_kg) AS avg_weight_kg
+  FROM shipments s
+  JOIN warehouses w1 ON s.origin_warehouse_id = w1.id
+  JOIN warehouses w2 ON s.dest_warehouse_id = w2.id
+  GROUP BY w1.name, w2.name
+  ORDER BY origin, destination;
+validationSql: |
+  SELECT CASE WHEN NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT w1.name AS origin, w2.name AS destination, AVG(s.weight_kg) AS avg_weight_kg
+      FROM shipments s
+      JOIN warehouses w1 ON s.origin_warehouse_id = w1.id
+      JOIN warehouses w2 ON s.dest_warehouse_id = w2.id
+      GROUP BY w1.name, w2.name
+      ORDER BY origin, destination
+    ) user_result
+    EXCEPT
+    SELECT 1 FROM (
+      VALUES ('East Center', 'West Station', 320.00), ('North Hub', 'South Depot', 1200.00),
+             ('North Hub', 'East Center', 500.00), ('South Depot', 'North Hub', 750.50),
+             ('South Depot', 'West Station', 890.00), ('West Station', 'East Center', 450.25),
+             ('West Station', 'South Depot', 200.00)
+    ) expected(origin, destination, avg_weight_kg)
+  ) THEN 1 ELSE 0 END AS correct;
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

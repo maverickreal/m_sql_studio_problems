@@ -1,0 +1,29 @@
+id: "01a08dde-83a6-785f-8f21-7b3c1479b9b2"
+slug: "running-word-count-by-publish-date"
+title: "Running word count by publish date"
+description: |
+  Each published article title with a running sum of word_count ordered by published_date.
+difficulty: hard
+mode: read
+category: content
+datasets:
+  - content
+sampleInput:
+  - "authors(id, name, email, joined_date)"
+  - "articles(id, title, author_id, category, published_date, word_count, status)"
+  - "comments(id, article_id, commenter_name, body, posted_date)"
+  - "tags(id, name)"
+  - "article_tags(article_id, tag_id)"
+  - "likes(id, article_id, user_name, liked_date)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: content
+solutionSql: |
+  SELECT title, SUM(word_count) OVER (ORDER BY published_date, title) AS running_words FROM articles WHERE status = 'published' ORDER BY published_date, title
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

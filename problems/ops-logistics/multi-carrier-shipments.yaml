@@ -1,0 +1,28 @@
+id: "01a08dde-8479-7f9f-8066-ad494b29fc27"
+slug: "multi-carrier-shipments"
+title: "Shipments with more than one carrier"
+description: |
+  shipment_id appearing more than once in shipment_carriers.
+difficulty: medium
+mode: read
+category: ops-logistics
+datasets:
+  - ops-logistics
+sampleInput:
+  - "warehouses(id, name, city, capacity)"
+  - "shipments(id, origin_warehouse_id, dest_warehouse_id, ship_date, delivery_date, status, weight_kg)"
+  - "inventory(id, warehouse_id, product_name, quantity, reorder_level)"
+  - "carriers(id, name, type)"
+  - "shipment_carriers(shipment_id, carrier_id, cost)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: ops-logistics
+solutionSql: |
+  SELECT shipment_id FROM shipment_carriers GROUP BY shipment_id HAVING COUNT(*) > 1 ORDER BY shipment_id
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1

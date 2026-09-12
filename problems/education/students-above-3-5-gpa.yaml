@@ -1,0 +1,29 @@
+id: "01a08dde-841c-7107-8a7b-a55a2a11e660"
+slug: "students-above-3-5-gpa"
+title: "Students with GPA above 3.5"
+description: |
+  Names whose average points exceed 3.5.
+difficulty: medium
+mode: read
+category: education
+datasets:
+  - education
+sampleInput:
+  - "students(id, name, cohort_year, major)"
+  - "courses(id, code, title, credits, dept)"
+  - "enrollments(student_id, course_id, term)"
+  - "grades(student_id, course_id, term, letter, points)"
+  - "instructors(id, name, dept)"
+  - "course_instructors(course_id, instructor_id, term)"
+sampleOutput: "gold-diff"
+initSql: |
+  -- Dataset: education
+solutionSql: |
+  SELECT s.name FROM students s JOIN grades g ON g.student_id = s.id GROUP BY s.name HAVING AVG(g.points) > 3.5 ORDER BY s.name
+validationSql: |
+  SELECT 1 AS ok
+orderMatters: true
+origin: first-party
+author: "maverickreal"
+license: "CC-BY-4.0"
+schema_version: 1
