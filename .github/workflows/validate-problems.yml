@@ -2,7 +2,7 @@ name: Validate Problems
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
     paths:
       - 'problems/**/*.yaml'
       - 'datasets/**'
@@ -10,9 +10,9 @@ on:
       - 'scripts/**'
       - 'test/**'
       - 'package.json'
-      - 'package-lock.json'
+      - 'bun.lock'
   pull_request:
-    branches: [main]
+    branches: [main, dev]
     paths:
       - 'problems/**/*.yaml'
       - 'datasets/**'
@@ -20,7 +20,7 @@ on:
       - 'scripts/**'
       - 'test/**'
       - 'package.json'
-      - 'package-lock.json'
+      - 'bun.lock'
 
 jobs:
   validate:
@@ -29,22 +29,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: '20'
+          bun-version: 1.4.2
 
       - name: Install dependencies
-        run: npm ci
+        run: bun install --frozen-lockfile
 
       - name: Run test suite
-        run: npm test
+        run: bun run test
 
       - name: Validate datasets
-        run: npm run validate:datasets
+        run: bun run validate:datasets
 
       - name: Validate all problem YAML files
-        run: npm run validate
+        run: bun run validate
 
   # Optional: runnable test executor (Postgres integration)
   test-executor:
@@ -67,15 +67,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: '20'
+          bun-version: 1.4.2
 
       - name: Install dependencies
-        run: npm ci
+        run: bun install --frozen-lockfile
 
       - name: Run test executor (Postgres)
-        run: node scripts/test-executor.mjs
+        run: bun run scripts/test-executor.mjs
         env:
           DATABASE_URL: postgres://test:test@localhost:5432/problems_test
