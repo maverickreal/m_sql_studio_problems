@@ -114,13 +114,13 @@ Problems reference datasets by slug in the `datasets` field.
 
 ```bash
 # Validate all problems against schema
-npm run validate
+bun run validate
 
 # Validate dataset SQL syntax
-npm run validate:datasets
+bun run validate:datasets
 
 # Run all tests
-npm test
+bun test
 ```
 
 ## Sync to Platform
